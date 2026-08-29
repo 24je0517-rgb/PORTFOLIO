@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+﻿import React, { useRef } from "react";
 import { SectionHeader } from "./SectionHeader";
 import { Divider } from "./Divider";
 import { ProjectCard } from "./ProjectCard";
@@ -11,7 +11,7 @@ export const Work: React.FC = () => {
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
-      const scrollAmount = direction === "left" ? -440 : 440;
+      const scrollAmount = direction === "left" ? -360 : 360;
       scrollContainerRef.current.scrollBy({
         left: scrollAmount,
         behavior: "smooth"
@@ -20,8 +20,8 @@ export const Work: React.FC = () => {
   };
 
   return (
-    <section id="work" className="py-16 sm:py-24">
-      <Divider className="mb-12 sm:mb-16" />
+    <section id="work" className="py-12 sm:py-20 lg:py-24">
+      <Divider className="mb-10 sm:mb-16" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header with Left/Right Navigation Arrows */}
@@ -49,13 +49,13 @@ export const Work: React.FC = () => {
         />
 
         <p className="text-xs sm:text-sm text-slate-500 font-mono mb-6">
-          Selected product cases, root cause analyses (RCA), and data analysis reports.
+          Selected product cases, root cause analyses (RCA), and data analysis reports. Swipe or use arrows to view more.
         </p>
 
         {/* Horizontal Scrollable Carousel Container */}
         <div
           ref={scrollContainerRef}
-          className="flex items-stretch gap-6 overflow-x-auto pb-6 pt-2 no-scrollbar scroll-smooth snap-x snap-mandatory"
+          className="flex items-stretch gap-4 sm:gap-6 overflow-x-auto pb-6 pt-2 no-scrollbar scroll-smooth snap-x snap-mandatory touch-pan-x"
         >
           {projects.map((project) => (
             <div key={project.id} className="snap-start flex-none">

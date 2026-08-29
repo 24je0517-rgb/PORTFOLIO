@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { ProjectItem } from "../data/portfolioData";
 import { ProjectSlideCover } from "./ProjectSlideCover";
 import { ArrowRight, FileText } from "lucide-react";
@@ -9,7 +9,7 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="group flex-none w-[340px] sm:w-[400px] md:w-[430px] rounded-2xl border border-slate-200/90 bg-white hover:border-slate-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between overflow-hidden">
+    <div className="group flex-none w-[84vw] max-w-[340px] sm:max-w-none sm:w-[380px] md:w-[420px] rounded-2xl border border-slate-200/90 bg-white hover:border-slate-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between overflow-hidden">
       {/* Top Presentation Cover Image */}
       <div>
         <ProjectSlideCover
@@ -20,36 +20,36 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         />
 
         {/* Card Content Below Image */}
-        <div className="p-6 sm:p-7 space-y-4">
+        <div className="p-5 sm:p-7 space-y-3 sm:space-y-4">
           {/* Small Category / Number Label */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono font-semibold tracking-wider text-blue-700 uppercase">
+            <span className="text-[11px] sm:text-xs font-mono font-semibold tracking-wider text-blue-700 uppercase">
               {project.number} {project.tag}
             </span>
           </div>
 
           {/* Project Title */}
-          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug group-hover:text-blue-600 transition-colors">
+          <h3 className="text-lg sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug group-hover:text-blue-600 transition-colors">
             {project.title}
           </h3>
 
           {/* Italicized Subtitle */}
-          <p className="text-sm font-normal italic text-slate-700 leading-relaxed">
+          <p className="text-xs sm:text-sm font-normal italic text-slate-700 leading-relaxed">
             {project.subtitle}
           </p>
 
           {/* Explanatory Paragraph */}
-          <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed line-clamp-4">
+          <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed line-clamp-3 sm:line-clamp-4">
             {project.description}
           </p>
         </div>
       </div>
 
       {/* Action Button at Bottom */}
-      <div className="p-6 sm:p-7 pt-0">
+      <div className="p-5 sm:p-7 pt-0">
         <a
           href={project.deckUrl || "#"}
-          className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-slate-900 group-hover:text-blue-600 transition-colors py-2 border-t border-slate-100 w-full"
+          className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-slate-900 group-hover:text-blue-600 transition-colors py-2.5 border-t border-slate-100 w-full"
         >
           <FileText size={14} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
           <span>{project.buttonLabel || "VIEW CASE →"}</span>
