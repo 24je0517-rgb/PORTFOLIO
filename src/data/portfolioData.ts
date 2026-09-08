@@ -1,17 +1,22 @@
-export interface ProjectItem {
+﻿export interface ProjectItem {
   id: string;
   number: string;
-  tag: string;
-  category: string;
+  shortName: string;
   title: string;
-  subtitle: string;
-  description: string;
-  deckUrl?: string;
-  certificateUrl?: string;
-  caseUrl?: string;
-  badgeText?: string;
-  buttonLabel?: string;
-  themeType?: 'case' | 'rca' | 'data1' | 'data2';
+  category: string;
+  deckUrl: string;
+  achievement: string;
+  badgeText: string;
+  tags: string[];
+  bullets: string[];
+  accentColor: {
+    name: string;
+    text: string;
+    bg: string;
+    border: string;
+    glow: string;
+    gradient: string;
+  };
 }
 
 export interface ExperienceItem {
@@ -168,122 +173,91 @@ export const portfolioData: PortfolioData = {
     ]
   },
 
-  // EXPERIENCE SECTION (Placeholder structure - easily add items when available)
-  experience: [
-    /*
-    Example item format for later:
-    {
-      id: "exp-1",
-      company: "Company Name",
-      position: "Product Intern / Analyst",
-      duration: "May 2025 - Jul 2025",
-      location: "Bengaluru, India (Remote)",
-      description: "Brief overview of what you worked on and the business scope.",
-      responsibilities: [
-        "Conducted user research interviews with 25+ target customers...",
-        "Built automated KPI dashboards in Power BI tracking DAU/MAU...",
-        "Collaborated with engineering to draft PRD for onboarding revamp..."
-      ],
-      achievements: [
-        "Reduced onboarding friction by 14% based on RCA findings.",
-        "Delivered end-to-end product roadmaps adopted by core leadership."
-      ],
-      skills: ["Product Strategy", "Power BI", "User Research", "Figma"]
-    }
-    */
-  ],
+  // EXPERIENCE SECTION
+  experience: [],
 
-  // WORK / PROJECTS SECTION
+  // REDESIGNED PROJECTS / WORK SECTION (Rich Case Studies + Live Decks)
   projects: [
     {
-      id: "proj-01",
+      id: "credit-planner",
       number: "01",
-      tag: "PRODUCT CASE · CASE COMPETITION",
-      category: "Product Case",
-      title: "[Project Name]",
-      subtitle: "[Short project description will be added later.]",
-      description:
-        "Comprehensive product case study evaluating market opportunity, customer segmentation, value proposition mapping, and strategic go-to-market execution.",
-      deckUrl: "#",
-      buttonLabel: "VIEW CASE →",
-      badgeText: "DECK ↗",
-      themeType: "case"
+      shortName: "CREDIT PLANNER",
+      title: "Credit Planner – PM Challenge 2026",
+      category: "Product Thinking · UX/UI Design · Fintech",
+      deckUrl: "decks/credit-planner.pdf",
+      achievement: "Secured 7th rank out of 119 participants in the 2nd round of Product Improvement Sprint of a Real Fintech Product – Credit Planner.",
+      badgeText: "7th / 119",
+      tags: ["UX AUDIT", "USER JOURNEY", "FINTECH", "UX/UI", "PRODUCT THINKING"],
+      bullets: [
+        "Conducted a UX audit of the Credit Planner experience and identified usability issues across the “Find My Card”, “Compare Cards”, and card selection journeys.",
+        "Proposed UI improvements to improve card discoverability, comparison clarity, and ease of card selection based on identified user pain points.",
+        "Redesigned key interaction elements, including card highlighting and selection areas, to create a more intuitive and user-friendly experience."
+      ],
+      accentColor: {
+        name: "cyan",
+        text: "text-cyan-400",
+        bg: "bg-cyan-500/10",
+        border: "border-cyan-500/30",
+        glow: "rgba(6, 182, 212, 0.15)",
+        gradient: "from-cyan-500/20 via-blue-500/10 to-transparent"
+      }
     },
     {
-      id: "proj-02",
+      id: "shasang-ai",
       number: "02",
-      tag: "PRODUCT ANALYSIS · RCA",
-      category: "RCA Exercise",
-      title: "[RCA Project Name]",
-      subtitle: "[Description will be added later.]",
-      description:
-        "Structured root cause analysis dissecting critical user friction, telemetry anomalies, and behavioral drop-offs, paired with prioritized actionable recommendations.",
-      deckUrl: "#",
-      buttonLabel: "VIEW CASE →",
-      badgeText: "DECK ↗",
-      themeType: "rca"
+      shortName: "SHASANG AI",
+      title: "ShaSang AI – Growth Strategy",
+      category: "Product Thinking · Growth Strategy · UX/UI Design",
+      deckUrl: "decks/shasang-ai.pdf",
+      achievement: "Top 25 of 364 participants in the ShaSang A.I National Growth Strategy Challenge.",
+      badgeText: "Top 25 / 364",
+      tags: ["GROWTH STRATEGY", "USER PERSONA", "RETENTION", "GAMIFICATION", "PRODUCT THINKING"],
+      bullets: [
+        "Designed a low-cost organic growth strategy targeting 5,000+ new users through user journey analysis and product-led acquisition.",
+        "Created a user persona and mapped key pain points across discovery, navigation, and test-taking journeys to identify UX opportunities and UI gaps.",
+        "Proposed a gamified “SAI Coins” ecosystem with task-based rewards, referrals, and joining bonuses to drive acquisition and retention.",
+        "Developed retention initiatives including daily missions, regional leader boards, and monthly competitions to increase engagement and repeat usage."
+      ],
+      accentColor: {
+        name: "emerald",
+        text: "text-emerald-400",
+        bg: "bg-emerald-500/10",
+        border: "border-emerald-500/30",
+        glow: "rgba(16, 185, 129, 0.15)",
+        gradient: "from-emerald-500/20 via-teal-500/10 to-transparent"
+      }
     },
     {
-      id: "proj-03",
+      id: "dattansh",
       number: "03",
-      tag: "DATA ANALYSIS",
-      category: "GOIT Project 01",
-      title: "[GOIT Data Analysis Project 01]",
-      subtitle: "[Description will be added later.]",
-      description:
-        "End-to-end data analytics workflow covering exploratory data analysis (EDA), cleaning, cohort trends, statistical summaries, and interactive business visualizations.",
-      deckUrl: "#",
-      buttonLabel: "VIEW PROJECT →",
-      badgeText: "REPORT ↗",
-      themeType: "data1"
-    },
-    {
-      id: "proj-04",
-      number: "04",
-      tag: "DATA ANALYSIS",
-      category: "GOIT Project 02",
-      title: "[GOIT Data Analysis Project 02]",
-      subtitle: "[Description will be added later.]",
-      description:
-        "Applied data analysis transforming multidimensional business datasets into strategic insights, executive KPI dashboards, and data-backed product improvements.",
-      deckUrl: "#",
-      buttonLabel: "VIEW PROJECT →",
-      badgeText: "REPORT ↗",
-      themeType: "data2"
+      shortName: "DATTANSH",
+      title: "Dattansh – Rice Economy Analytics",
+      category: "Excel · Data Analytics · Product Analytics",
+      deckUrl: "decks/dattansh.pdf",
+      achievement: "50+ Years of India’s Rice Economy Data Analyzed Across MSP, Area, Yield, and Production.",
+      badgeText: "50+ Years of Data",
+      tags: ["DATA ANALYSIS", "PRODUCT ANALYTICS", "FORECASTING", "CAGR", "SUPPLY RISK"],
+      bullets: [
+        "Analyzed 50+ years of India’s rice economy data across MSP, cultivation area, yield, and production to identify long-term growth trends and supply-side risks.",
+        "Performed exploratory and trend analysis using YoY growth, CAGR, and production variance to identify key drivers of production and historical supply shocks.",
+        "Identified yield and cultivated area as key production drivers and analyzed volatility to derive actionable insights for procurement and capacity planning.",
+        "Built a 2026–27 production forecast of ~1,702 lakh tonnes using recent historical CAGR, translating analytical findings into forward-looking business insights.",
+        "Converted data-driven findings into strategic recommendations focused on productivity improvement, supply-risk mitigation, and long-term capacity planning."
+      ],
+      accentColor: {
+        name: "indigo",
+        text: "text-indigo-400",
+        bg: "bg-indigo-500/10",
+        border: "border-indigo-500/30",
+        glow: "rgba(99, 102, 241, 0.15)",
+        gradient: "from-indigo-500/20 via-sky-500/10 to-transparent"
+      }
     }
   ],
 
-  // ACHIEVEMENTS SECTION (Placeholder structure - easily add items when available)
-  achievements: [
-    /*
-    Example item format for later:
-    {
-      id: "ach-1",
-      title: "National Finalist - Product Case Competition",
-      category: "Case Competition",
-      organization: "IIT / Top B-School",
-      date: "2025",
-      description: "Ranked among top teams nationally for product strategy presentation.",
-      rank: "Top 5 Finalist"
-    }
-    */
-  ],
+  // ACHIEVEMENTS SECTION
+  achievements: [],
 
-  // POSITIONS OF RESPONSIBILITY (Placeholder structure - easily add items when available)
-  positions: [
-    /*
-    Example item format for later:
-    {
-      id: "pos-1",
-      organization: "Product Club / Student Body",
-      position: "Core Team Member / Lead",
-      duration: "2024 - Present",
-      description: "Leading product initiatives and workshops for student community.",
-      responsibilities: [
-        "Organized campus-wide case competitions with 500+ participants.",
-        "Mentored juniors on product thinking, PRD writing, and Figma basics."
-      ]
-    }
-    */
-  ]
+  // POSITIONS OF RESPONSIBILITY
+  positions: []
 };
