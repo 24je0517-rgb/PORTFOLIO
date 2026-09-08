@@ -1,21 +1,34 @@
-﻿export interface ProjectItem {
+﻿export interface SlideItem {
+  src: string;
+  label?: string;
+}
+
+export interface MetricPanel {
+  key: string;
+  label: string;
+}
+
+export interface ProjectItem {
   id: string;
   number: string;
   shortName: string;
   title: string;
   category: string;
+  oneLiner: string;
   deckUrl: string;
   achievement: string;
   badgeText: string;
   tags: string[];
   bullets: string[];
+  panels: MetricPanel[];
+  slides: SlideItem[];
   accentColor: {
     name: string;
     text: string;
     bg: string;
     border: string;
     glow: string;
-    gradient: string;
+    grad: string;
   };
 }
 
@@ -176,7 +189,7 @@ export const portfolioData: PortfolioData = {
   // EXPERIENCE SECTION
   experience: [],
 
-  // REDESIGNED PROJECTS / WORK SECTION (Rich Case Studies + Live Decks)
+  // WORK / PROJECTS SECTION
   projects: [
     {
       id: "credit-planner",
@@ -184,22 +197,37 @@ export const portfolioData: PortfolioData = {
       shortName: "CREDIT PLANNER",
       title: "Credit Planner – PM Challenge 2026",
       category: "Product Thinking · UX/UI Design · Fintech",
+      oneLiner: "UX audit and interface redesign to solve card discoverability and decision friction.",
       deckUrl: "decks/credit-planner.pdf",
       achievement: "Secured 7th rank out of 119 participants in the 2nd round of Product Improvement Sprint of a Real Fintech Product – Credit Planner.",
       badgeText: "7th / 119",
       tags: ["UX AUDIT", "USER JOURNEY", "FINTECH", "UX/UI", "PRODUCT THINKING"],
+      panels: [
+        { key: "Rank 7", label: "out of 119 participants" },
+        { key: "3 Flows", label: "Find · Compare · Select" },
+        { key: "Fintech", label: "Credit Card Ecosystem" }
+      ],
       bullets: [
         "Conducted a UX audit of the Credit Planner experience and identified usability issues across the “Find My Card”, “Compare Cards”, and card selection journeys.",
         "Proposed UI improvements to improve card discoverability, comparison clarity, and ease of card selection based on identified user pain points.",
         "Redesigned key interaction elements, including card highlighting and selection areas, to create a more intuitive and user-friendly experience."
+      ],
+      slides: [
+        { src: "decks/credit-planner/slide-01.png", label: "Cover & PM Challenge" },
+        { src: "decks/credit-planner/slide-02.png", label: "Find My Card Flow" },
+        { src: "decks/credit-planner/slide-03.png", label: "Key Changes & Card Highlighting" },
+        { src: "decks/credit-planner/slide-04.png", label: "Compare Cards Audit" },
+        { src: "decks/credit-planner/slide-05.png", label: "Comparison Pricing UX Fix" },
+        { src: "decks/credit-planner/slide-06.png", label: "Card Selection Flow" },
+        { src: "decks/credit-planner/slide-07.png", label: "Click Area & Selection Solution" }
       ],
       accentColor: {
         name: "cyan",
         text: "text-cyan-400",
         bg: "bg-cyan-500/10",
         border: "border-cyan-500/30",
-        glow: "rgba(6, 182, 212, 0.15)",
-        gradient: "from-cyan-500/20 via-blue-500/10 to-transparent"
+        glow: "rgba(6, 182, 212, 0.4)",
+        grad: "linear-gradient(135deg,#06B6D4 0%,#3B82F6 60%,#18011F 100%)"
       }
     },
     {
@@ -208,23 +236,36 @@ export const portfolioData: PortfolioData = {
       shortName: "SHASANG AI",
       title: "ShaSang AI – Growth Strategy",
       category: "Product Thinking · Growth Strategy · UX/UI Design",
+      oneLiner: "Product-led organic acquisition, SAI Coins tokenomics, and habit-forming retention loops.",
       deckUrl: "decks/shasang-ai.pdf",
       achievement: "Top 25 of 364 participants in the ShaSang A.I National Growth Strategy Challenge.",
       badgeText: "Top 25 / 364",
       tags: ["GROWTH STRATEGY", "USER PERSONA", "RETENTION", "GAMIFICATION", "PRODUCT THINKING"],
+      panels: [
+        { key: "Top 25", label: "out of 364 participants" },
+        { key: "5,000+", label: "Organic Users Target" },
+        { key: "SAI Coins", label: "Gamified Retention Loop" }
+      ],
       bullets: [
         "Designed a low-cost organic growth strategy targeting 5,000+ new users through user journey analysis and product-led acquisition.",
         "Created a user persona and mapped key pain points across discovery, navigation, and test-taking journeys to identify UX opportunities and UI gaps.",
         "Proposed a gamified “SAI Coins” ecosystem with task-based rewards, referrals, and joining bonuses to drive acquisition and retention.",
         "Developed retention initiatives including daily missions, regional leader boards, and monthly competitions to increase engagement and repeat usage."
       ],
+      slides: [
+        { src: "decks/shasang-ai/slide-01.png", label: "Growth Strategy Cover" },
+        { src: "decks/shasang-ai/slide-02.png", label: "User Journey, Personas & UI Gaps" },
+        { src: "decks/shasang-ai/slide-03.png", label: "SAI Coins & User Acquisition" },
+        { src: "decks/shasang-ai/slide-04.png", label: "Retention Rate & Daily Missions" },
+        { src: "decks/shasang-ai/slide-05.png", label: "Strategic Summary & Thank You" }
+      ],
       accentColor: {
         name: "emerald",
         text: "text-emerald-400",
         bg: "bg-emerald-500/10",
         border: "border-emerald-500/30",
-        glow: "rgba(16, 185, 129, 0.15)",
-        gradient: "from-emerald-500/20 via-teal-500/10 to-transparent"
+        glow: "rgba(16, 185, 129, 0.4)",
+        grad: "linear-gradient(135deg,#10B981 0%,#06B6D4 60%,#0C0C0C 100%)"
       }
     },
     {
@@ -233,10 +274,16 @@ export const portfolioData: PortfolioData = {
       shortName: "DATTANSH",
       title: "Dattansh – Rice Economy Analytics",
       category: "Excel · Data Analytics · Product Analytics",
+      oneLiner: "Deconstructing 50 years of agricultural yield, MSP policy shifts, and ~1,702L tonne forecasting.",
       deckUrl: "decks/dattansh.pdf",
       achievement: "50+ Years of India’s Rice Economy Data Analyzed Across MSP, Area, Yield, and Production.",
-      badgeText: "50+ Years of Data",
+      badgeText: "50+ Years Data",
       tags: ["DATA ANALYSIS", "PRODUCT ANALYTICS", "FORECASTING", "CAGR", "SUPPLY RISK"],
+      panels: [
+        { key: "50+ Yrs", label: "Historical Agriculture Data" },
+        { key: "~1,702L", label: "Tonnes 2026-27 Forecast" },
+        { key: "2.74%", label: "Production 50-Yr CAGR" }
+      ],
       bullets: [
         "Analyzed 50+ years of India’s rice economy data across MSP, cultivation area, yield, and production to identify long-term growth trends and supply-side risks.",
         "Performed exploratory and trend analysis using YoY growth, CAGR, and production variance to identify key drivers of production and historical supply shocks.",
@@ -244,13 +291,21 @@ export const portfolioData: PortfolioData = {
         "Built a 2026–27 production forecast of ~1,702 lakh tonnes using recent historical CAGR, translating analytical findings into forward-looking business insights.",
         "Converted data-driven findings into strategic recommendations focused on productivity improvement, supply-risk mitigation, and long-term capacity planning."
       ],
+      slides: [
+        { src: "decks/dattansh/slide-01.png", label: "Dattansh: Data Analytics Cover" },
+        { src: "decks/dattansh/slide-02.png", label: "Problem Statement & 50-Year Dataset" },
+        { src: "decks/dattansh/slide-03.png", label: "Supply Growth Drivers & Key Findings" },
+        { src: "decks/dattansh/slide-04.png", label: "Supply Risks & 10-Year CAGR Matrix" },
+        { src: "decks/dattansh/slide-05.png", label: "Final Conclusion & 2026-27 Forecast" },
+        { src: "decks/dattansh/slide-06.png", label: "Executive Summary & Thank You" }
+      ],
       accentColor: {
         name: "indigo",
         text: "text-indigo-400",
         bg: "bg-indigo-500/10",
         border: "border-indigo-500/30",
-        glow: "rgba(99, 102, 241, 0.15)",
-        gradient: "from-indigo-500/20 via-sky-500/10 to-transparent"
+        glow: "rgba(129, 140, 248, 0.4)",
+        grad: "linear-gradient(135deg,#818CF8 0%,#06B6D4 65%,#111014 100%)"
       }
     }
   ],

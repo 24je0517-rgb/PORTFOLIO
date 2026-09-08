@@ -1,8 +1,8 @@
 ﻿import React from "react";
 import { ProjectItem } from "../../data/portfolioData";
 import { ProjectTags } from "./ProjectTags";
-import { ProjectDeckViewer } from "./ProjectDeckViewer";
-import { Trophy, ExternalLink, Download, CheckCircle2 } from "lucide-react";
+import { Deck } from "./Deck";
+import { Trophy, ExternalLink, Download } from "lucide-react";
 
 interface ProjectCaseStudyProps {
   project: ProjectItem;
@@ -11,26 +11,33 @@ interface ProjectCaseStudyProps {
 export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) => {
   const { accentColor } = project;
 
+  // Resolve deckUrl with base
+  const resolveDeckUrl = (url: string) => {
+    if (url.startsWith("http") || url.startsWith("/")) return url;
+    const base = import.meta.env.BASE_URL || "/";
+    return `${base}${url.replace(/^\//, "")}`;
+  };
+
   return (
-    <div className="relative w-full rounded-3xl bg-[#0b0d10] border border-white/10 p-6 sm:p-8 lg:p-10 shadow-2xl transition-all duration-300">
-      {/* Background Soft Glow */}
+    <div className="relative w-full rounded-3xl bg-[#101318] border border-white/10 p-6 sm:p-8 lg:p-12 shadow-2xl transition-all duration-300">
+      {/* Subtle Background Glow */}
       <div
-        className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none -z-0 opacity-20"
+        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none -z-0 opacity-25"
         style={{ background: accentColor.glow }}
       />
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Left Column: Project Metadata & Problem Breakdown */}
-        <div className="lg:col-span-5 space-y-6 flex flex-col justify-between">
-          <div className="space-y-5">
-            {/* Top Row: Number & Category & Achievement Badge */}
-            <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+        {/* Left Column: Project Details & Analytical Breakdown */}
+        <div className="lg:col-span-5 space-y-6">
+          {/* Header Metadata */}
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
                 <span className={`text-sm font-mono font-bold ${accentColor.text}`}>
                   {project.number}
                 </span>
-                <span className="text-slate-500 font-mono text-xs">/</span>
-                <span className="text-xs font-mono tracking-wider text-slate-400 uppercase">
+                <span className="text-slate-600 font-mono text-xs">/</span>
+                <span className="text-xs font-mono tracking-widest text-slate-400 uppercase">
                   {project.category}
                 </span>
               </div>
@@ -43,88 +50,88 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
             </div>
 
             {/* Project Title */}
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-[1.1]">
               {project.title}
             </h3>
 
-            {/* PM & Analytics Tags */}
-            <div className="pt-1">
-              <ProjectTags
-                tags={project.tags}
-                accentText={accentColor.text}
-                accentBorder={accentColor.border}
-              />
-            </div>
-
-            {/* Achievement Highlight Card */}
-            {project.achievement && (
-              <div className={`p-4 rounded-xl bg-[#101318] border ${accentColor.border} flex items-start gap-3`}>
-                <div className={`p-2 rounded-lg ${accentColor.bg} ${accentColor.text} flex-shrink-0 mt-0.5`}>
-                  <Trophy size={16} />
-                </div>
-                <div className="space-y-0.5">
-                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">
-                    Competition Achievement
-                  </span>
-                  <p className="text-xs text-slate-200 leading-relaxed font-medium">
-                    {project.achievement}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Key Summary Bullet Points */}
-            <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-2 text-xs font-mono tracking-wider text-slate-400 uppercase">
-                <span className={`w-1.5 h-1.5 rounded-full ${accentColor.text.replace('text-', 'bg-')}`} />
-                <span>Key Contributions & Analytical Scope</span>
-              </div>
-
-              <div className="space-y-2.5">
-                {project.bullets.map((bullet, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3.5 rounded-xl bg-[#101318]/90 border border-white/5 hover:border-white/15 transition-all text-xs text-slate-300 leading-relaxed flex items-start gap-2.5"
-                  >
-                    <CheckCircle2 size={15} className={`${accentColor.text} flex-shrink-0 mt-0.5`} />
-                    <span>{bullet}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* One-Liner Summary */}
+            <p className="text-sm sm:text-base font-normal text-slate-300 leading-relaxed">
+              {project.oneLiner}
+            </p>
           </div>
 
-          {/* Bottom Deck Actions */}
-          <div className="pt-6 border-t border-white/10 flex flex-wrap items-center gap-3">
+          {/* 3 Metric / Impact Panels */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 py-1">
+            {project.panels.map((panel, idx) => (
+              <div
+                key={idx}
+                className="p-3 rounded-xl bg-[#161922] border border-white/5 text-center space-y-0.5"
+              >
+                <div className={`text-sm sm:text-base font-mono font-bold ${accentColor.text}`}>
+                  {panel.key}
+                </div>
+                <div className="text-[10px] sm:text-[10.5px] font-mono text-slate-400 leading-tight">
+                  {panel.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* PM & Analytics Tags */}
+          <ProjectTags
+            tags={project.tags}
+            accentText={accentColor.text}
+            accentBorder={accentColor.border}
+          />
+
+          {/* Key Insight Bullet Points */}
+          <div className="space-y-2.5 pt-1">
+            {project.bullets.map((bullet, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-3 text-xs sm:text-[13px] text-slate-300 leading-relaxed"
+              >
+                <span className={`w-2 h-2 rounded-full ${accentColor.text.replace('text-', 'bg-')} flex-shrink-0 mt-1.5 shadow-[0_0_8px_currentColor]`} />
+                <span>{bullet}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Action Links */}
+          <div className="pt-4 flex flex-wrap items-center gap-3">
             <a
-              href={project.deckUrl}
+              href={resolveDeckUrl(project.deckUrl)}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl ${accentColor.bg} ${accentColor.text} border ${accentColor.border} hover:bg-white/10 hover:text-white text-xs font-mono font-semibold transition-all`}
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full ${accentColor.bg} ${accentColor.text} border ${accentColor.border} hover:bg-white/10 hover:text-white text-xs font-mono font-semibold transition-all shadow-md`}
             >
+              <span>Explore Deck PDF</span>
               <ExternalLink size={14} />
-              <span>Open Deck in New Tab</span>
             </a>
 
             <a
-              href={project.deckUrl}
+              href={resolveDeckUrl(project.deckUrl)}
               download
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#13161c] border border-white/10 hover:border-white/30 text-xs font-mono text-slate-300 hover:text-white transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#161922] border border-white/10 hover:border-white/30 text-xs font-mono text-slate-300 hover:text-white transition-all"
             >
-              <Download size={14} />
-              <span>Download PDF</span>
+              <Download size={13} />
+              <span>Download</span>
             </a>
           </div>
         </div>
 
-        {/* Right Column: Live Presentation Deck Viewer */}
+        {/* Right Column: 16:9 Interactive Deck Viewer */}
         <div className="lg:col-span-7 w-full">
-          <ProjectDeckViewer
+          <Deck
+            slides={project.slides}
+            name={project.title}
             deckUrl={project.deckUrl}
-            projectTitle={project.title}
-            accentText={accentColor.text}
-            accentBorder={accentColor.border}
-            accentGlow={accentColor.glow}
+            theme={{
+              grad: accentColor.grad,
+              glow: accentColor.glow,
+              text: accentColor.text,
+              border: accentColor.border
+            }}
           />
         </div>
       </div>

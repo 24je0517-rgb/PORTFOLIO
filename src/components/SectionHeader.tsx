@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 interface SectionHeaderProps {
   label: string;
@@ -17,7 +17,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     <div className={`w-full mb-8 sm:mb-12 ${className}`}>
       <div className="flex items-center justify-between gap-4">
         {title ? (
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 uppercase">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white uppercase">
             {title}
           </h2>
         ) : (
@@ -26,8 +26,8 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         
         <div className="flex items-center gap-3">
           {rightAction}
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-slate-200 bg-slate-50/80 text-[11px] font-mono tracking-widest text-slate-600 uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500/80"></span>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border border-white/10 bg-[#111014] text-[11px] font-mono tracking-widest text-slate-300 uppercase shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
             {label}
           </div>
         </div>

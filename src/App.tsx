@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
@@ -36,7 +36,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen flex flex-col justify-between bg-[#0c0c0c] text-[#D7E2EA] selection:bg-cyan-500 selection:text-black">
       <Header activeSection={activeSection} />
       
       <main className="flex-grow">

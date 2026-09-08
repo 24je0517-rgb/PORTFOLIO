@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 interface DividerProps {
   className?: string;
@@ -6,6 +6,6 @@ interface DividerProps {
 
 export const Divider: React.FC<DividerProps> = ({ className = "" }) => {
   return (
-    <div className={`w-full border-t border-slate-200/80 my-0 ${className}`} />
+    <div className={`w-full border-t border-white/10 my-0 ${className}`} />
   );
 };
