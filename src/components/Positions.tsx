@@ -1,111 +1,94 @@
-import React, { useState } from "react";
+import React from "react";
 import { SectionHeader } from "./SectionHeader";
 import { Divider } from "./Divider";
 import { portfolioData } from "../data/portfolioData";
-import { Users, Info, ChevronRight } from "lucide-react";
+import { Users, CheckCircle2, Calendar } from "lucide-react";
 
 export const Positions: React.FC = () => {
   const { positions } = portfolioData;
-  const [showStructureGuide, setShowStructureGuide] = useState(false);
 
   return (
-    <section id="positions" className="py-16 sm:py-24 bg-[#0c0c0c]">
+    <section id="positions" className="py-16 sm:py-24 bg-[#0c0c0c] text-white">
       <Divider className="mb-12 sm:mb-16" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <SectionHeader
           label="POSITIONS OF RESPONSIBILITY"
           title="POSITIONS OF RESPONSIBILITY"
         />
 
-        {positions.length === 0 ? (
-          /* Clean, dark placeholder structure */
-          <div className="rounded-3xl border border-white/10 bg-[#111014] p-8 sm:p-12 text-center max-w-3xl mx-auto space-y-6 shadow-2xl">
-            <div className="w-12 h-12 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto text-purple-400">
-              <Users size={22} />
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="text-lg sm:text-xl font-bold text-white">
-                Leadership & Campus Initiatives
-              </h3>
-              <p className="text-sm text-slate-400 max-w-lg mx-auto leading-relaxed">
-                Positions of responsibility across student clubs, departmental bodies, and organizing committees at IIT(ISM) Dhanbad will be updated here.
-              </p>
-            </div>
-
-            <div className="pt-2">
-              <button
-                onClick={() => setShowStructureGuide(!showStructureGuide)}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-white/10 bg-[#161922] text-xs font-mono text-slate-300 hover:text-white hover:border-white/25 transition-colors"
-              >
-                <Info size={14} className="text-purple-400" />
-                <span>{showStructureGuide ? "Hide Structure Preview" : "View Structure Schema"}</span>
-              </button>
-            </div>
-
-            {showStructureGuide && (
-              <div className="text-left bg-[#07080a] text-slate-200 p-5 rounded-2xl border border-white/10 text-xs font-mono space-y-2 animate-in fade-in-50 duration-200 shadow-inner">
-                <p className="text-slate-500 font-semibold mb-2">
-                  // You can add leadership positions in <code className="text-cyan-400">src/data/portfolioData.ts</code>:
-                </p>
-                <pre className="text-[11px] leading-relaxed overflow-x-auto text-purple-400">
-{`{
-  id: "pos-01",
-  organization: "Product Management Club / Student Chapter",
-  position: "Core Team Member / Lead",
-  duration: "2024 – Present",
-  description: "Spearheaded campus workshops on product discovery and data analytics.",
-  responsibilities: [
-    "Organized flagship case competitions with 400+ participants.",
-    "Led peer-mentoring circles on PRDs and Figma wireframing."
-  ]
-}`}
-                </pre>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {positions.map((item) => (
-              <div
-                key={item.id}
-                className="p-6 sm:p-7 rounded-2xl border border-white/10 bg-[#111014] hover:border-white/20 transition-all shadow-xl space-y-3"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <h3 className="text-base font-bold text-white">
-                      {item.position}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {positions.map((item) => (
+            <div
+              key={item.id}
+              className="group relative rounded-3xl border border-white/10 bg-[#111014] p-6 sm:p-8 hover:border-white/25 transition-all duration-300 shadow-xl flex flex-col justify-between"
+            >
+              <div className="space-y-5">
+                {/* Card Header: Number & Initiative */}
+                <div className="flex items-center justify-between gap-2 border-b border-white/5 pb-4">
+                  <div className="flex items-center gap-2">
+                    <span className={`text-base font-mono font-bold ${item.accentColor?.text || "text-cyan-400"}`}>
+                      {item.number}
+                    </span>
+                    <span className="text-slate-700 font-mono text-xs">/</span>
+                    <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                      {item.initiative}
                     </h3>
-                    <p className="text-sm font-semibold text-cyan-400">
-                      {item.organization}
-                    </p>
                   </div>
-                  <span className="text-xs font-mono text-slate-500">
-                    {item.duration}
-                  </span>
+
+                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-slate-400">
+                    <Calendar size={12} className="text-slate-500" />
+                    <span>{item.duration}</span>
+                  </div>
                 </div>
 
+                {/* Role & Org */}
+                <div className="space-y-1">
+                  <div className="text-sm sm:text-base font-semibold text-white flex items-center gap-2">
+                    <Users size={16} className={item.accentColor?.text || "text-cyan-400"} />
+                    <span>{item.position}</span>
+                  </div>
+                  <div className="text-xs font-mono text-slate-400 pl-6">
+                    {item.organization}
+                  </div>
+                </div>
+
+                {/* Summary Description */}
                 {item.description && (
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pl-1">
                     {item.description}
                   </p>
                 )}
 
+                {/* Key Contributions & Responsibilities */}
                 {item.responsibilities && item.responsibilities.length > 0 && (
-                  <ul className="space-y-1 pt-1">
-                    {item.responsibilities.map((resp, idx) => (
-                      <li key={idx} className="text-xs text-slate-300 flex items-start gap-1.5">
-                        <ChevronRight size={13} className="text-cyan-400 flex-shrink-0 mt-0.5" />
-                        <span>{resp}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="space-y-2 pt-2 border-t border-white/5">
+                    <div className="text-[11px] font-mono tracking-wider text-slate-400 uppercase">
+                      KEY CONTRIBUTIONS
+                    </div>
+                    <ul className="space-y-2">
+                      {item.responsibilities.map((resp, idx) => (
+                        <li key={idx} className="text-xs sm:text-[13px] text-slate-300 flex items-start gap-2.5 leading-relaxed">
+                          <CheckCircle2
+                            size={14}
+                            className={`${item.accentColor?.text || "text-cyan-400"} flex-shrink-0 mt-0.5`}
+                          />
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
-            ))}
-          </div>
-        )}
+
+              {/* Bottom Subtle Tag */}
+              <div className="pt-6 mt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-500">
+                <span>Campus & Leadership</span>
+                <span className={item.accentColor?.text || "text-cyan-400"}>Active</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

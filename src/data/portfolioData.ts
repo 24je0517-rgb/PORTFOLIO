@@ -46,22 +46,35 @@ export interface ExperienceItem {
 
 export interface AchievementItem {
   id: string;
+  number: string;
+  stat: string;
   title: string;
-  category: string;
-  organization?: string;
-  date?: string;
-  description?: string;
-  rank?: string;
-  link?: string;
+  subtitle: string;
+  description: string;
+  tag: string;
+  accentColor: {
+    name: string;
+    text: string;
+    bg: string;
+    border: string;
+    glow: string;
+  };
 }
 
 export interface PositionItem {
   id: string;
-  organization: string;
+  number: string;
+  initiative: string;
   position: string;
+  organization: string;
   duration: string;
   description?: string;
   responsibilities?: string[];
+  accentColor?: {
+    text: string;
+    bg: string;
+    border: string;
+  };
 }
 
 export interface PortfolioData {
@@ -311,8 +324,101 @@ export const portfolioData: PortfolioData = {
   ],
 
   // ACHIEVEMENTS SECTION
-  achievements: [],
+  achievements: [
+    {
+      id: "ach-credit-planner",
+      number: "01",
+      stat: "7th / 119",
+      title: "Product Improvement Sprint",
+      subtitle: "Credit Planner – Real Fintech Product",
+      description:
+        "Secured 7th rank out of 119 participants in the 2nd round of the Product Improvement Sprint of a Real Fintech Product – Credit Planner.",
+      tag: "PM SPRINT",
+      accentColor: {
+        name: "cyan",
+        text: "text-cyan-400",
+        bg: "bg-cyan-500/10",
+        border: "border-cyan-500/30",
+        glow: "rgba(6, 182, 212, 0.25)"
+      }
+    },
+    {
+      id: "ach-shasang-ai",
+      number: "02",
+      stat: "TOP 25 / 364",
+      title: "National Growth Strategy Challenge",
+      subtitle: "ShaSang A.I",
+      description:
+        "Ranked among the Top 25 out of 364 participants in the ShaSang A.I National Growth Strategy Challenge.",
+      tag: "GROWTH STRATEGY",
+      accentColor: {
+        name: "emerald",
+        text: "text-emerald-400",
+        bg: "bg-emerald-500/10",
+        border: "border-emerald-500/30",
+        glow: "rgba(16, 185, 129, 0.25)"
+      }
+    },
+    {
+      id: "ach-bajaj-torq",
+      number: "03",
+      stat: "ROUND 1 CLEARED",
+      title: "Bajaj TORQ 2026",
+      subtitle: "National Level Campus Challenge",
+      description:
+        "Successfully cleared the 1st Round of Bajaj TORQ 2026 – a National Level Campus Challenge.",
+      tag: "CAMPUS CHALLENGE",
+      accentColor: {
+        name: "indigo",
+        text: "text-indigo-400",
+        bg: "bg-indigo-500/10",
+        border: "border-indigo-500/30",
+        glow: "rgba(129, 140, 248, 0.25)"
+      }
+    }
+  ],
 
   // POSITIONS OF RESPONSIBILITY
-  positions: []
+  positions: [
+    {
+      id: "pos-mailer-daemon",
+      number: "01",
+      initiative: "Student Media – Mailer Daemon",
+      position: "Member, Student Media Run Body",
+      organization: "IIT (ISM) Dhanbad",
+      duration: "2024 – Present",
+      description:
+        "Contributing to student journalism, campus communication, editorial features, and media coverage for the official student-run media body of IIT (ISM) Dhanbad.",
+      responsibilities: [
+        "Covered campus-wide initiatives, executive interviews, and institute achievements.",
+        "Drafted high-engagement editorial features, articles, and newsletters for the student community.",
+        "Collaborated with cross-functional media teams to ensure clear communication and brand consistency."
+      ],
+      accentColor: {
+        text: "text-cyan-400",
+        bg: "bg-cyan-500/10",
+        border: "border-cyan-500/30"
+      }
+    },
+    {
+      id: "pos-case-leadership",
+      number: "02",
+      initiative: "Case Competition Leadership",
+      position: "Team Lead",
+      organization: "Inter-College & National Competitions",
+      duration: "2024 – Present",
+      description:
+        "Led teams of 2–4 members from different branches of the college across 5+ case competitions.",
+      responsibilities: [
+        "Formulated problem breakdown frameworks, user research plans, and metric trees.",
+        "Coordinated workstreams across market sizing, UI/UX prototyping in Figma, and executive pitch decks.",
+        "Managed cross-functional collaboration under tight sprint deadlines to deliver competitive case submissions."
+      ],
+      accentColor: {
+        text: "text-emerald-400",
+        bg: "bg-emerald-500/10",
+        border: "border-emerald-500/30"
+      }
+    }
+  ]
 };
