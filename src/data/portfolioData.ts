@@ -126,7 +126,7 @@ export const portfolioData: PortfolioData = {
 
   about: {
     currently:
-      "Pre-final at IIT(ISM) Dhanbad, constantly curious about understanding difficult problems, breaking them down, finding their root causes, and thinking about practical solutions.",
+      "Prefinal at IIT(ISM) Dhanbad, constantly curious about understanding difficult problems, breaking them down, finding their root causes, and thinking about practical solutions.",
     whatIDo: [
       {
         title: "Figma UX/UI Design",
