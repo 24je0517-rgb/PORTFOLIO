@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { ProjectItem } from "../../data/portfolioData";
 import { ChevronRight } from "lucide-react";
 

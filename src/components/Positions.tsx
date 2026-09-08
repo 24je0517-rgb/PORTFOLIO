@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { SectionHeader } from "./SectionHeader";
 import { Divider } from "./Divider";
 import { portfolioData } from "../data/portfolioData";

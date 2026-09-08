@@ -1,4 +1,4 @@
-﻿export interface SlideItem {
+export interface SlideItem {
   src: string;
   label?: string;
 }

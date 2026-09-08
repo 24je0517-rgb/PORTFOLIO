@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { SectionHeader } from "./SectionHeader";
 import { Divider } from "./Divider";
 import { portfolioData } from "../data/portfolioData";

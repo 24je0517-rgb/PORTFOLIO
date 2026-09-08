@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { ProjectItem } from "../../data/portfolioData";
 import { ProjectTags } from "./ProjectTags";
 import { Deck } from "./Deck";

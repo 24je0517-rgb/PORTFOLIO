@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { portfolioData } from "../data/portfolioData";
 

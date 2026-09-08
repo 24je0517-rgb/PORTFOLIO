@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { ArrowRight, Sparkles, MapPin } from "lucide-react";
 import { portfolioData } from "../data/portfolioData";
 

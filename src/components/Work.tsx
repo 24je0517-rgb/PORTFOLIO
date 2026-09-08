@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { portfolioData } from "../data/portfolioData";
 import { ProjectNavigation } from "./work/ProjectNavigation";
 import { ProjectCaseStudy } from "./work/ProjectCaseStudy";

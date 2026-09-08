@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X, ExternalLink } from "lucide-react";
 import { SlideItem } from "../../data/portfolioData";
 

@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { Mail, Linkedin, Github, ArrowUpRight, Copy, Check, Send } from "lucide-react";
 import { portfolioData } from "../data/portfolioData";
 
