@@ -251,11 +251,11 @@ export const portfolioData: PortfolioData = {
       category: "Product Thinking · Growth Strategy · UX/UI Design",
       oneLiner: "Product-led organic acquisition, SAI Coins tokenomics, and habit-forming retention loops.",
       deckUrl: "decks/shasang-ai.pdf",
-      achievement: "Top 25 of 364 participants in the ShaSang A.I National Growth Strategy Challenge.",
-      badgeText: "Top 25 / 364",
+      achievement: "Secured 6th rank out of 364 participants in the ShaSang A.I. National Growth Strategy Challenge.",
+      badgeText: "6th / 364",
       tags: ["GROWTH STRATEGY", "USER PERSONA", "RETENTION", "GAMIFICATION", "PRODUCT THINKING"],
       panels: [
-        { key: "Top 25", label: "out of 364 participants" },
+        { key: "6th Rank", label: "out of 364 participants" },
         { key: "5,000+", label: "Organic Users Target" },
         { key: "SAI Coins", label: "Gamified Retention Loop" }
       ],
@@ -345,11 +345,11 @@ export const portfolioData: PortfolioData = {
     {
       id: "ach-shasang-ai",
       number: "02",
-      stat: "TOP 25 / 364",
+      stat: "6th / 364",
       title: "National Growth Strategy Challenge",
       subtitle: "ShaSang A.I",
       description:
-        "Ranked among the Top 25 out of 364 participants in the ShaSang A.I National Growth Strategy Challenge.",
+        "Secured 6th rank out of 364 participants in the ShaSang A.I. National Growth Strategy Challenge.",
       tag: "GROWTH STRATEGY",
       accentColor: {
         name: "emerald",
