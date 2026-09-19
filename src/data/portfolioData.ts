@@ -16,6 +16,8 @@ export interface ProjectItem {
   category: string;
   oneLiner: string;
   deckUrl: string;
+  certificateUrl?: string;
+  certificateTitle?: string;
   achievement: string;
   badgeText: string;
   tags: string[];
@@ -212,6 +214,8 @@ export const portfolioData: PortfolioData = {
       category: "Product Thinking · UX/UI Design · Fintech",
       oneLiner: "UX audit and interface redesign to solve card discoverability and decision friction.",
       deckUrl: "decks/credit-planner.pdf",
+      certificateUrl: "certificates/credit-planner.png",
+      certificateTitle: "Credit Planner – Certificate of Excellence (Rank 7)",
       achievement: "Secured 7th rank out of 119 participants in the 2nd round of Product Improvement Sprint of a Real Fintech Product – Credit Planner.",
       badgeText: "7th / 119",
       tags: ["UX AUDIT", "USER JOURNEY", "FINTECH", "UX/UI", "PRODUCT THINKING"],
@@ -251,6 +255,8 @@ export const portfolioData: PortfolioData = {
       category: "Product Thinking · Growth Strategy · UX/UI Design",
       oneLiner: "Product-led organic acquisition, SAI Coins tokenomics, and habit-forming retention loops.",
       deckUrl: "decks/shasang-ai.pdf",
+      certificateUrl: "certificates/shasang-ai.png",
+      certificateTitle: "ShaSang A.I. – Certificate of Excellence (Rank 6)",
       achievement: "Secured 6th rank out of 364 participants in the ShaSang A.I. National Growth Strategy Challenge.",
       badgeText: "6th / 364",
       tags: ["GROWTH STRATEGY", "USER PERSONA", "RETENTION", "GAMIFICATION", "PRODUCT THINKING"],
@@ -289,6 +295,8 @@ export const portfolioData: PortfolioData = {
       category: "Excel · Data Analytics · Product Analytics",
       oneLiner: "Deconstructing 50 years of agricultural yield, MSP policy shifts, and ~1,702L tonne forecasting.",
       deckUrl: "decks/dattansh.pdf",
+      certificateUrl: "certificates/dattansh.png",
+      certificateTitle: "Dattansh – Certificate of Analytics Excellence",
       achievement: "50+ Years of India’s Rice Economy Data Analyzed Across MSP, Area, Yield, and Production.",
       badgeText: "50+ Years Data",
       tags: ["DATA ANALYSIS", "PRODUCT ANALYTICS", "FORECASTING", "CAGR", "SUPPLY RISK"],

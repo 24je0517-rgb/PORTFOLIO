@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
-import { ChevronLeft, ChevronRight, Maximize2, X, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { SlideItem } from "../../data/portfolioData";
 
 interface DeckProps {
   slides: SlideItem[];
   name: string;
-  deckUrl: string;
+  deckUrl?: string;
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
   theme: {
     grad: string;
     glow: string;
@@ -15,10 +17,27 @@ interface DeckProps {
   };
 }
 
-export const Deck: React.FC<DeckProps> = ({ slides, name, deckUrl, theme }) => {
+export const Deck: React.FC<DeckProps> = ({
+  slides,
+  name,
+  isOpen: externalIsOpen,
+  onOpenChange,
+  theme,
+}) => {
   const [idx, setIdx] = useState<number>(0);
-  const [open, setOpen] = useState<boolean>(false);
+  const [internalOpen, setInternalOpen] = useState<boolean>(false);
   const touchStartX = useRef<number | null>(null);
+
+  const open = externalIsOpen !== undefined ? externalIsOpen : internalOpen;
+  const setOpen = useCallback(
+    (newOpen: boolean) => {
+      if (onOpenChange) {
+        onOpenChange(newOpen);
+      }
+      setInternalOpen(newOpen);
+    },
+    [onOpenChange]
+  );
 
   const total = slides.length;
 
@@ -232,17 +251,6 @@ export const Deck: React.FC<DeckProps> = ({ slides, name, deckUrl, theme }) => {
                   <span className="text-slate-500 mx-1">/</span>
                   <span className="text-slate-400">{String(total).padStart(2, "0")}</span>
                 </div>
-
-                {/* Open PDF Link */}
-                <a
-                  href={resolveSrc(deckUrl)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-white/20 bg-white/10 hover:bg-white/20 text-xs font-mono text-white transition-colors"
-                >
-                  <ExternalLink size={13} />
-                  <span>Open PDF</span>
-                </a>
 
                 {/* Prominent Close X Button */}
                 <button

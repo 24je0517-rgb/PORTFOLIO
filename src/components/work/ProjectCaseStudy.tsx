@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { ProjectItem } from "../../data/portfolioData";
 import { ProjectTags } from "./ProjectTags";
 import { Deck } from "./Deck";
-import { Trophy, ExternalLink, Download } from "lucide-react";
+import { CertificateModal } from "./CertificateModal";
+import { Trophy, Award, Layers } from "lucide-react";
 
 interface ProjectCaseStudyProps {
   project: ProjectItem;
@@ -10,13 +11,8 @@ interface ProjectCaseStudyProps {
 
 export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) => {
   const { accentColor } = project;
-
-  // Resolve deckUrl with base
-  const resolveDeckUrl = (url: string) => {
-    if (url.startsWith("http") || url.startsWith("/")) return url;
-    const base = import.meta.env.BASE_URL || "/";
-    return `${base}${url.replace(/^\//, "")}`;
-  };
+  const [isDeckOpen, setIsDeckOpen] = useState(false);
+  const [isCertOpen, setIsCertOpen] = useState(false);
 
   return (
     <div className="relative w-full rounded-3xl bg-[#101318] border border-white/10 p-6 sm:p-8 lg:p-12 shadow-2xl transition-all duration-300">
@@ -99,24 +95,27 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
 
           {/* Bottom Action Links */}
           <div className="pt-4 flex flex-wrap items-center gap-3">
-            <a
-              href={resolveDeckUrl(project.deckUrl)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full ${accentColor.bg} ${accentColor.text} border ${accentColor.border} hover:bg-white/10 hover:text-white text-xs font-mono font-semibold transition-all shadow-md`}
+            {/* View Deck Button */}
+            <button
+              type="button"
+              onClick={() => setIsDeckOpen(true)}
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full ${accentColor.bg} ${accentColor.text} border ${accentColor.border} hover:bg-white/10 hover:text-white text-xs font-mono font-semibold transition-all shadow-md cursor-pointer`}
             >
-              <span>Explore Deck PDF</span>
-              <ExternalLink size={14} />
-            </a>
+              <Layers size={14} />
+              <span>View Deck</span>
+            </button>
 
-            <a
-              href={resolveDeckUrl(project.deckUrl)}
-              download
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#161922] border border-white/10 hover:border-white/30 text-xs font-mono text-slate-300 hover:text-white transition-all"
-            >
-              <Download size={13} />
-              <span>Download</span>
-            </a>
+            {/* View Certificate Button */}
+            {project.certificateUrl && (
+              <button
+                type="button"
+                onClick={() => setIsCertOpen(true)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#161922] border border-white/15 hover:border-white/35 text-xs font-mono font-semibold text-slate-200 hover:text-white hover:bg-white/5 transition-all shadow-md cursor-pointer"
+              >
+                <Award size={14} className={accentColor.text} />
+                <span>View Certificate</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -126,6 +125,8 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
             slides={project.slides}
             name={project.title}
             deckUrl={project.deckUrl}
+            isOpen={isDeckOpen}
+            onOpenChange={setIsDeckOpen}
             theme={{
               grad: accentColor.grad,
               glow: accentColor.glow,
@@ -135,6 +136,18 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
           />
         </div>
       </div>
+
+      {/* Non-Downloadable Protected Certificate Modal */}
+      {project.certificateUrl && (
+        <CertificateModal
+          isOpen={isCertOpen}
+          onClose={() => setIsCertOpen(false)}
+          certificateUrl={project.certificateUrl}
+          title={project.certificateTitle || `${project.title} Certificate`}
+          projectTitle={project.title}
+          themeColor={accentColor}
+        />
+      )}
     </div>
   );
 };
