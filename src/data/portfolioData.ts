@@ -296,7 +296,7 @@ export const portfolioData: PortfolioData = {
       oneLiner: "Deconstructing 50 years of agricultural yield, MSP policy shifts, and ~1,702L tonne forecasting.",
       deckUrl: "decks/dattansh.pdf",
       certificateUrl: "certificates/dattansh.png",
-      certificateTitle: "Dattansh – Certificate of Analytics Excellence",
+      certificateTitle: "Dattansh: Data Analytics – Certificate of Participation (MANAGE Hyderabad)",
       achievement: "50+ Years of India’s Rice Economy Data Analyzed Across MSP, Area, Yield, and Production.",
       badgeText: "50+ Years Data",
       tags: ["DATA ANALYSIS", "PRODUCT ANALYTICS", "FORECASTING", "CAGR", "SUPPLY RISK"],
