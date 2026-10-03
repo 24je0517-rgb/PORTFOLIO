@@ -75,7 +75,7 @@ export const Work: React.FC = () => {
         </div>
 
         {/* Scroll-Driven Overlapping Sticky Stack Container */}
-        <div className="relative space-y-16 sm:space-y-24 lg:space-y-32 pb-8">
+        <div className="relative space-y-24 sm:space-y-36 lg:space-y-48 pb-12">
           {projects.map((project, index) => (
             <div
               key={project.id}

@@ -3,7 +3,6 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
 import { Skills } from "./components/Skills";
-import { Experience } from "./components/Experience";
 import { Work } from "./components/Work";
 import { Achievements } from "./components/Achievements";
 import { Positions } from "./components/Positions";
@@ -14,7 +13,7 @@ export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("about");
 
   useEffect(() => {
-    const sections = ["about", "journey", "work", "contact"];
+    const sections = ["about", "work", "achievements", "contact"];
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
 
@@ -43,7 +42,6 @@ export const App: React.FC = () => {
         <Hero />
         <About />
         <Skills />
-        <Experience />
         <Work />
         <Achievements />
         <Positions />

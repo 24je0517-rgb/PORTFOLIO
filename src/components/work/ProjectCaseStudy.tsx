@@ -54,6 +54,29 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
             <p className="text-sm sm:text-base font-normal text-slate-300 leading-relaxed">
               {project.oneLiner}
             </p>
+
+            {/* Primary Action Buttons (Prominent in Header) */}
+            <div className="pt-2 flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <button
+                type="button"
+                onClick={() => setIsDeckOpen(true)}
+                className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full ${accentColor.bg} ${accentColor.text} border ${accentColor.border} hover:bg-white/10 hover:text-white text-xs font-mono font-semibold transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95`}
+              >
+                <Layers size={14} />
+                <span>View Deck</span>
+              </button>
+
+              {project.certificateUrl && (
+                <button
+                  type="button"
+                  onClick={() => setIsCertOpen(true)}
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#161922] border border-white/15 hover:border-white/35 text-xs font-mono font-semibold text-slate-200 hover:text-white hover:bg-white/10 transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                >
+                  <Award size={14} className={accentColor.text} />
+                  <span>View Certificate</span>
+                </button>
+              )}
+            </div>
           </div>
 
           {/* 3 Metric / Impact Panels */}
@@ -92,35 +115,10 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
               </div>
             ))}
           </div>
-
-          {/* Bottom Action Links */}
-          <div className="pt-4 flex flex-wrap items-center gap-3">
-            {/* View Deck Button */}
-            <button
-              type="button"
-              onClick={() => setIsDeckOpen(true)}
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full ${accentColor.bg} ${accentColor.text} border ${accentColor.border} hover:bg-white/10 hover:text-white text-xs font-mono font-semibold transition-all shadow-md cursor-pointer`}
-            >
-              <Layers size={14} />
-              <span>View Deck</span>
-            </button>
-
-            {/* View Certificate Button */}
-            {project.certificateUrl && (
-              <button
-                type="button"
-                onClick={() => setIsCertOpen(true)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#161922] border border-white/15 hover:border-white/35 text-xs font-mono font-semibold text-slate-200 hover:text-white hover:bg-white/5 transition-all shadow-md cursor-pointer"
-              >
-                <Award size={14} className={accentColor.text} />
-                <span>View Certificate</span>
-              </button>
-            )}
-          </div>
         </div>
 
         {/* Right Column: 16:9 Interactive Deck Viewer */}
-        <div className="lg:col-span-7 w-full">
+        <div className="lg:col-span-7 w-full space-y-3">
           <Deck
             slides={project.slides}
             name={project.title}
@@ -134,6 +132,29 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
               border: accentColor.border
             }}
           />
+
+          {/* Secondary Quick Action Bar Below Deck for Instant Access */}
+          <div className="flex items-center justify-end gap-2.5 pt-1">
+            <button
+              type="button"
+              onClick={() => setIsDeckOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-white/10 bg-[#161922]/80 hover:bg-white/10 text-xs font-mono text-slate-300 hover:text-white transition-all cursor-pointer"
+            >
+              <Layers size={13} className={accentColor.text} />
+              <span>Expand Deck</span>
+            </button>
+
+            {project.certificateUrl && (
+              <button
+                type="button"
+                onClick={() => setIsCertOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-white/10 bg-[#161922]/80 hover:bg-white/10 text-xs font-mono text-slate-300 hover:text-white transition-all cursor-pointer"
+              >
+                <Award size={13} className={accentColor.text} />
+                <span>Certificate</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
