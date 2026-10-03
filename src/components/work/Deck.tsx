@@ -126,7 +126,9 @@ export const Deck: React.FC<DeckProps> = ({
       >
         {/* Slide Carousel Track */}
         <div
-          className="flex h-full w-full"
+          onClick={() => setOpen(true)}
+          className="flex h-full w-full cursor-pointer"
+          title="Click to expand deck in full screen"
           style={{
             transform: `translateX(-${idx * 100}%)`,
             transition: "transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)",

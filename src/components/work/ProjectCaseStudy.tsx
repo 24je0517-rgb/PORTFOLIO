@@ -66,7 +66,7 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
                 <span>View Deck</span>
               </button>
 
-              {project.certificateUrl && (
+              {project.certificateUrl ? (
                 <button
                   type="button"
                   onClick={() => setIsCertOpen(true)}
@@ -75,7 +75,15 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
                   <Award size={14} className={accentColor.text} />
                   <span>View Certificate</span>
                 </button>
-              )}
+              ) : project.certificateStatus === "coming_soon" ? (
+                <div
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#161922] border border-white/15 text-xs font-mono font-medium text-slate-300 shadow-sm cursor-default select-none"
+                  title="Certificate: Coming Soon"
+                >
+                  <Award size={14} className="text-amber-400/90" />
+                  <span>Certificate: Coming Soon</span>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -144,7 +152,7 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
               <span>Expand Deck</span>
             </button>
 
-            {project.certificateUrl && (
+            {project.certificateUrl ? (
               <button
                 type="button"
                 onClick={() => setIsCertOpen(true)}
@@ -153,7 +161,14 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
                 <Award size={13} className={accentColor.text} />
                 <span>Certificate</span>
               </button>
-            )}
+            ) : project.certificateStatus === "coming_soon" ? (
+              <div
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-white/10 bg-[#161922]/60 text-xs font-mono text-slate-400 cursor-default select-none"
+              >
+                <Award size={13} className="text-amber-400/90" />
+                <span>Certificate: Coming Soon</span>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

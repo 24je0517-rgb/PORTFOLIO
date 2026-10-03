@@ -18,6 +18,7 @@ export interface ProjectItem {
   deckUrl: string;
   certificateUrl?: string;
   certificateTitle?: string;
+  certificateStatus?: "available" | "coming_soon";
   achievement: string;
   badgeText: string;
   tags: string[];
@@ -207,8 +208,50 @@ export const portfolioData: PortfolioData = {
   // WORK / PROJECTS SECTION
   projects: [
     {
-      id: "credit-planner",
+      id: "jar",
       number: "01",
+      shortName: "JAR APP",
+      title: "Jar – Product Engagement & Growth Case Study",
+      category: "Product Management • Case Competition • Fintech",
+      oneLiner: "A product case study focused on improving active engagement in Jar while preserving its passive saving experience.",
+      deckUrl: "decks/jar.pdf",
+      certificateStatus: "coming_soon",
+      achievement: "National Level Product & Consulting Case Competition – IIT(ISM) Dhanbad (Caseblitz)",
+      badgeText: "CASEBLITZ",
+      tags: ["PRODUCT STRATEGY", "GROWTH & RETENTION", "FINTECH", "MECE RCA", "GAMIFICATION"],
+      panels: [
+        { key: "MWAS", label: "North Star Metric" },
+        { key: "5 Tiers", label: "EXP Privilege System" },
+        { key: "Fintech", label: "Micro-Savings & Gold" }
+      ],
+      bullets: [
+        "Diagnosed Jar’s silent saving engagement challenge through competitor analysis (Gullak, OroPocket, Paytm) and MECE root-cause analysis across Value, Motivation, Trigger, and Habit Formation.",
+        "Proposed a 5-level tier-based privilege system (Starter to Premium) where users earn EXP through meaningful actions and unlock progressively valuable benefits.",
+        "Mapped user journeys and modeled customer engagement funnel economics to drive higher saving continuity, cross-sell opportunities, and lifetime value.",
+        "Formulated a comprehensive metrics framework centered on Meaningful Weekly Active Savers (MWAS) as the North Star Metric, supported by WAU, tier progression rate, and retention."
+      ],
+      slides: [
+        { src: "decks/jar/slide-01.png", label: "Cover & PM Case Competition" },
+        { src: "decks/jar/slide-02.png", label: "Executive Summary & Redefined Problem" },
+        { src: "decks/jar/slide-03.png", label: "Research & MECE Issue Tree" },
+        { src: "decks/jar/slide-04.png", label: "Solution & User Journey" },
+        { src: "decks/jar/slide-05.png", label: "Tier-Wise Benefits & Privileges" },
+        { src: "decks/jar/slide-06.png", label: "Business Impact & Funnel Model" },
+        { src: "decks/jar/slide-07.png", label: "North Star Metric & Key Metrics (MWAS)" },
+        { src: "decks/jar/slide-08.png", label: "Team & Concluding Slide" }
+      ],
+      accentColor: {
+        name: "violet",
+        text: "text-violet-400",
+        bg: "bg-violet-500/10",
+        border: "border-violet-500/30",
+        glow: "rgba(139, 92, 246, 0.4)",
+        grad: "linear-gradient(135deg,#8B5CF6 0%,#6366F1 60%,#0C0C0C 100%)"
+      }
+    },
+    {
+      id: "credit-planner",
+      number: "02",
       shortName: "CREDIT PLANNER",
       title: "Credit Planner – PM Challenge 2026",
       category: "Product Thinking · UX/UI Design · Fintech",
@@ -249,7 +292,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "shasang-ai",
-      number: "02",
+      number: "03",
       shortName: "SHASANG AI",
       title: "ShaSang AI – Growth Strategy",
       category: "Product Thinking · Growth Strategy · UX/UI Design",
@@ -289,7 +332,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "dattansh",
-      number: "03",
+      number: "04",
       shortName: "DATTANSH",
       title: "Dattansh – Rice Economy Analytics",
       category: "Excel · Data Analytics · Product Analytics",
