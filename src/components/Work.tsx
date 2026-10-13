@@ -36,38 +36,38 @@ export const Work: React.FC = () => {
   return (
     <section
       id="work"
-      className="relative py-16 sm:py-24 lg:py-28 bg-[#07080a] text-[#f5f5f5] border-y border-white/10 overflow-visible"
+      className="relative py-16 sm:py-24 lg:py-28 bg-[#F1ECE4] text-[#2B2118] border-y border-[#E6DFD3] overflow-visible"
     >
       {/* Ambient background glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-cyan-950/20 via-emerald-950/10 to-transparent blur-3xl pointer-events-none -z-0" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-[#A97F50]/10 via-[#F0E4D4]/30 to-transparent blur-3xl pointer-events-none -z-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-white/10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[#E6DFD3]">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-xs font-mono text-emerald-400">
-              <FolderKanban size={13} className="text-emerald-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#A97F50]/30 bg-[#F0E4D4] text-xs font-mono text-[#8A6035]">
+              <FolderKanban size={13} className="text-[#A97F50]" />
               <span>CASE STUDIES & DECK SHOWCASE</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white uppercase">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#2B2118] uppercase">
               PROJECTS
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-400 font-normal max-w-2xl">
+            <p className="text-sm sm:text-base text-[#6B5B4B] font-normal max-w-2xl">
               Selected work / Case studies — Scroll to explore in-depth product audits, growth frameworks, and analytics models.
             </p>
           </div>
 
           {/* Sticky/Dynamic Active Project Indicator Pill */}
           <div className="flex items-center self-start sm:self-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-[#101318] text-xs font-mono tracking-wider text-slate-300 shadow-md">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span className="text-emerald-400 font-bold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] text-xs font-mono tracking-wider text-[#2B2118] shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#A97F50] animate-pulse"></span>
+              <span className="text-[#8A6035] font-bold">
                 {String(activeProjectIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
               </span>
-              <span className="text-slate-500">·</span>
-              <span className="text-white font-medium truncate max-w-[140px] sm:max-w-[180px]">
+              <span className="text-[#8C7B6A]">·</span>
+              <span className="text-[#2B2118] font-medium truncate max-w-[140px] sm:max-w-[180px]">
                 {projects[activeProjectIndex]?.shortName || "CASE STUDY"}
               </span>
             </div>
@@ -87,7 +87,7 @@ export const Work: React.FC = () => {
               }}
               className="sticky transition-all duration-300"
             >
-              <div className="shadow-[0_-16px_50px_rgba(0,0,0,0.9)] rounded-3xl">
+              <div className="shadow-[0_-10px_35px_rgba(43,33,24,0.08)] rounded-3xl">
                 <ProjectCaseStudy project={project} />
               </div>
             </div>
@@ -95,9 +95,9 @@ export const Work: React.FC = () => {
         </div>
 
         {/* Bottom Understated Note */}
-        <div className="pt-10 sm:pt-14 text-center border-t border-white/10">
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#101318] border border-white/10 text-xs font-mono text-slate-400 shadow-lg">
-            <Sparkles size={14} className="text-emerald-400" />
+        <div className="pt-10 sm:pt-14 text-center border-t border-[#E6DFD3]">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FFFFFF] border border-[#E6DFD3] text-xs font-mono text-[#6B5B4B] shadow-sm">
+            <Sparkles size={14} className="text-[#A97F50]" />
             <span className="tracking-wide">MORE CASE STUDIES COMING SOON</span>
           </div>
         </div>

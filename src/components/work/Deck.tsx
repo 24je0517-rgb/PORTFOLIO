@@ -22,7 +22,7 @@ export const Deck: React.FC<DeckProps> = ({
   name,
   isOpen: externalIsOpen,
   onOpenChange,
-  theme,
+  theme: _theme,
 }) => {
   const [idx, setIdx] = useState<number>(0);
   const [internalOpen, setInternalOpen] = useState<boolean>(false);
@@ -118,9 +118,9 @@ export const Deck: React.FC<DeckProps> = ({
         }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className={`group relative w-full aspect-[16/9] rounded-2xl overflow-hidden border ${theme.border} bg-[#0a0a0c] shadow-2xl transition-all duration-300 focus:outline-none`}
+        className="group relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-[#E6DFD3] bg-[#FFFFFF] shadow-md transition-all duration-300 focus:outline-none"
         style={{
-          boxShadow: `0 24px 60px rgba(0,0,0,0.6), 0 0 35px -5px ${theme.glow}`,
+          boxShadow: "0 10px 30px rgba(43, 33, 24, 0.08)",
         }}
         aria-label="Presentation deck viewer. Swipe or use arrow keys to flip slides."
       >
@@ -137,7 +137,7 @@ export const Deck: React.FC<DeckProps> = ({
           {slides.map((s, i) => (
             <div
               key={i}
-              className="flex-[0_0_100%] relative h-full w-full bg-[#0a0a0c] flex items-center justify-center overflow-hidden"
+              className="flex-[0_0_100%] relative h-full w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden"
             >
               <img
                 src={resolveSrc(s.src)}
@@ -158,7 +158,7 @@ export const Deck: React.FC<DeckProps> = ({
             goPrev();
           }}
           disabled={idx === 0}
-          className="absolute top-1/2 left-3 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-[#0c0c0e]/85 text-white flex items-center justify-center transition-all hover:scale-105 disabled:opacity-20 disabled:hover:scale-100 disabled:cursor-default z-10 backdrop-blur-sm shadow-md"
+          className="absolute top-1/2 left-3 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E6DFD3] bg-[#FFFFFF]/90 text-[#2B2118] flex items-center justify-center transition-all hover:scale-105 hover:border-[#A97F50] hover:bg-[#FFFFFF] disabled:opacity-20 disabled:hover:scale-100 disabled:cursor-default z-10 backdrop-blur-sm shadow-sm"
         >
           <ChevronLeft size={20} />
         </button>
@@ -172,7 +172,7 @@ export const Deck: React.FC<DeckProps> = ({
             goNext();
           }}
           disabled={idx === total - 1}
-          className="absolute top-1/2 right-3 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-[#0c0c0e]/85 text-white flex items-center justify-center transition-all hover:scale-105 disabled:opacity-20 disabled:hover:scale-100 disabled:cursor-default z-10 backdrop-blur-sm shadow-md"
+          className="absolute top-1/2 right-3 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E6DFD3] bg-[#FFFFFF]/90 text-[#2B2118] flex items-center justify-center transition-all hover:scale-105 hover:border-[#A97F50] hover:bg-[#FFFFFF] disabled:opacity-20 disabled:hover:scale-100 disabled:cursor-default z-10 backdrop-blur-sm shadow-sm"
         >
           <ChevronRight size={20} />
         </button>
@@ -185,22 +185,22 @@ export const Deck: React.FC<DeckProps> = ({
             e.stopPropagation();
             setOpen(true);
           }}
-          className="absolute top-3 right-3 w-9 h-9 rounded-xl border border-white/20 bg-[#0c0c0e]/85 text-white flex items-center justify-center transition-all hover:bg-white/20 z-10 backdrop-blur-sm cursor-pointer shadow-md"
+          className="absolute top-3 right-3 w-9 h-9 rounded-xl border border-[#E6DFD3] bg-[#FFFFFF]/90 text-[#2B2118] flex items-center justify-center transition-all hover:bg-[#FFFFFF] hover:border-[#A97F50] z-10 backdrop-blur-sm cursor-pointer shadow-sm"
           title="Expand Fullscreen Presentation"
         >
           <Maximize2 size={15} />
         </button>
 
         {/* Current Slide Label Tag */}
-        <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md text-[11px] font-mono text-slate-300 border border-white/15 z-10 pointer-events-none">
+        <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-[#FFFFFF]/90 backdrop-blur-md text-[11px] font-mono text-[#2B2118] border border-[#E6DFD3] shadow-xs z-10 pointer-events-none">
           <span>{slides[idx]?.label || `Slide ${idx + 1}`}</span>
         </div>
 
         {/* Counter Pill */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#0c0c0e]/90 border border-white/20 text-xs font-mono font-bold tracking-widest text-slate-200 z-10 backdrop-blur-md shadow-md pointer-events-none">
-          <span className={theme.text}>{String(idx + 1).padStart(2, "0")}</span>
-          <span className="text-slate-500 mx-1">/</span>
-          <span className="text-slate-400">{String(total).padStart(2, "0")}</span>
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#FFFFFF]/95 border border-[#E6DFD3] text-xs font-mono font-bold tracking-widest text-[#2B2118] z-10 backdrop-blur-md shadow-sm pointer-events-none">
+          <span className="text-[#8A6035]">{String(idx + 1).padStart(2, "0")}</span>
+          <span className="text-[#8C7B6A] mx-1">/</span>
+          <span className="text-[#6B5B4B]">{String(total).padStart(2, "0")}</span>
         </div>
       </div>
 
@@ -214,8 +214,8 @@ export const Deck: React.FC<DeckProps> = ({
             onClick={() => goTo(i)}
             className={`h-2 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
               i === idx
-                ? `w-7 ${theme.text.replace("text-", "bg-")}`
-                : "w-2 bg-white/20 hover:bg-white/40"
+                ? "w-7 bg-[#A97F50]"
+                : "w-2 bg-[#D8CEBF] hover:bg-[#A97F50]/60"
             }`}
           />
         ))}
@@ -230,28 +230,28 @@ export const Deck: React.FC<DeckProps> = ({
             aria-modal="true"
             aria-label={`${name} presentation modal`}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-xl flex flex-col p-3 sm:p-6 md:p-8 animate-in fade-in duration-200 select-none overflow-hidden"
+            className="fixed inset-0 z-[99999] bg-[#F7F4EF]/98 backdrop-blur-xl flex flex-col p-3 sm:p-6 md:p-8 animate-in fade-in duration-200 select-none overflow-hidden"
           >
             {/* Top Bar */}
             <div
               onClick={(e) => e.stopPropagation()}
-              className="flex items-center justify-between gap-4 pb-3 sm:pb-4 border-b border-white/10 text-white w-full max-w-7xl mx-auto flex-shrink-0"
+              className="flex items-center justify-between gap-4 pb-3 sm:pb-4 border-b border-[#E6DFD3] text-[#2B2118] w-full max-w-7xl mx-auto flex-shrink-0"
             >
               <div className="min-w-0 pr-2">
-                <span className="text-[10px] sm:text-xs font-mono tracking-widest text-slate-400 uppercase block">
+                <span className="text-[10px] sm:text-xs font-mono tracking-widest text-[#8C7B6A] uppercase block">
                   PRESENTATION DECK
                 </span>
-                <h4 className="text-base sm:text-xl font-bold tracking-tight text-white truncate">
+                <h4 className="text-base sm:text-xl font-bold tracking-tight text-[#2B2118] truncate">
                   {name}
                 </h4>
               </div>
 
               <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
                 {/* Slide Counter */}
-                <div className="px-3 py-1 rounded-full bg-white/10 border border-white/15 font-mono text-xs sm:text-sm tracking-wider font-semibold text-slate-200">
-                  <span className={theme.text}>{String(idx + 1).padStart(2, "0")}</span>
-                  <span className="text-slate-500 mx-1">/</span>
-                  <span className="text-slate-400">{String(total).padStart(2, "0")}</span>
+                <div className="px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#E6DFD3] font-mono text-xs sm:text-sm tracking-wider font-semibold text-[#2B2118] shadow-xs">
+                  <span className="text-[#8A6035]">{String(idx + 1).padStart(2, "0")}</span>
+                  <span className="text-[#8C7B6A] mx-1">/</span>
+                  <span className="text-[#6B5B4B]">{String(total).padStart(2, "0")}</span>
                 </div>
 
                 {/* Prominent Close X Button */}
@@ -259,7 +259,7 @@ export const Deck: React.FC<DeckProps> = ({
                   type="button"
                   aria-label="Close fullscreen view"
                   onClick={() => setOpen(false)}
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/25 bg-white/15 hover:bg-white/30 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-xl z-20 focus:outline-none focus:ring-2 focus:ring-white/50"
+                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] text-[#2B2118] hover:border-[#A97F50] flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-md z-20 focus:outline-none focus:ring-2 focus:ring-[#A97F50]/50"
                   title="Close (Esc)"
                 >
                   <X size={20} />
@@ -278,7 +278,7 @@ export const Deck: React.FC<DeckProps> = ({
                 aria-label="Previous slide"
                 onClick={goPrev}
                 disabled={idx === 0}
-                className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/20 bg-[#161922]/90 hover:bg-white/20 disabled:opacity-20 text-white flex items-center justify-center transition-all flex-shrink-0 cursor-pointer disabled:cursor-default shadow-xl z-10"
+                className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] hover:border-[#A97F50] disabled:opacity-20 text-[#2B2118] flex items-center justify-center transition-all flex-shrink-0 cursor-pointer disabled:cursor-default shadow-md z-10"
               >
                 <ChevronLeft size={24} />
               </button>
@@ -287,9 +287,9 @@ export const Deck: React.FC<DeckProps> = ({
               <div
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
-                className="flex-1 max-w-6xl aspect-[16/9] max-h-[72vh] sm:max-h-[78vh] relative overflow-hidden rounded-2xl border border-white/20 shadow-2xl bg-[#0a0a0c]"
+                className="flex-1 max-w-6xl aspect-[16/9] max-h-[72vh] sm:max-h-[78vh] relative overflow-hidden rounded-2xl border border-[#E6DFD3] shadow-xl bg-[#FFFFFF]"
                 style={{
-                  boxShadow: `0 24px 60px rgba(0,0,0,0.8), 0 0 35px -5px ${theme.glow}`,
+                  boxShadow: "0 20px 50px rgba(43, 33, 24, 0.1)",
                 }}
               >
                 <div
@@ -302,7 +302,7 @@ export const Deck: React.FC<DeckProps> = ({
                   {slides.map((s, i) => (
                     <div
                       key={i}
-                      className="flex-[0_0_100%] relative h-full w-full bg-[#0a0a0c] flex items-center justify-center overflow-hidden"
+                      className="flex-[0_0_100%] relative h-full w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden"
                     >
                       <img
                         src={resolveSrc(s.src)}
@@ -315,7 +315,7 @@ export const Deck: React.FC<DeckProps> = ({
                 </div>
 
                 {/* Current Slide Label in Modal */}
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md text-xs font-mono text-slate-200 border border-white/15 pointer-events-none">
+                <div className="absolute top-3 left-3 px-3 py-1 rounded-lg bg-[#FFFFFF]/90 backdrop-blur-md text-xs font-mono text-[#2B2118] border border-[#E6DFD3] shadow-xs pointer-events-none">
                   <span>{slides[idx]?.label || `Slide ${idx + 1}`}</span>
                 </div>
               </div>
@@ -326,7 +326,7 @@ export const Deck: React.FC<DeckProps> = ({
                 aria-label="Next slide"
                 onClick={goNext}
                 disabled={idx === total - 1}
-                className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/20 bg-[#161922]/90 hover:bg-white/20 disabled:opacity-20 text-white flex items-center justify-center transition-all flex-shrink-0 cursor-pointer disabled:cursor-default shadow-xl z-10"
+                className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] hover:border-[#A97F50] disabled:opacity-20 text-[#2B2118] flex items-center justify-center transition-all flex-shrink-0 cursor-pointer disabled:cursor-default shadow-md z-10"
               >
                 <ChevronRight size={24} />
               </button>
@@ -346,8 +346,8 @@ export const Deck: React.FC<DeckProps> = ({
                     onClick={() => goTo(i)}
                     className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
                       i === idx
-                        ? `w-8 ${theme.text.replace("text-", "bg-")}`
-                        : "w-2.5 bg-white/25 hover:bg-white/50"
+                        ? "w-8 bg-[#A97F50]"
+                        : "w-2.5 bg-[#D8CEBF] hover:bg-[#A97F50]/60"
                     }`}
                     title={s.label || `Slide ${i + 1}`}
                   />

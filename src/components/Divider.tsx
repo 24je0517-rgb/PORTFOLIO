@@ -6,6 +6,6 @@ interface DividerProps {
 
 export const Divider: React.FC<DividerProps> = ({ className = "" }) => {
   return (
-    <div className={`w-full border-t border-white/10 my-0 ${className}`} />
+    <div className={`w-full border-t border-[#E6DFD3] my-0 ${className}`} />
   );
 };

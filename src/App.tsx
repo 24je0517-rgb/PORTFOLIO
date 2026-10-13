@@ -35,7 +35,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#0c0c0c] text-[#D7E2EA] selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen flex flex-col justify-between bg-[#F7F4EF] text-[#2B2118] selection:bg-[#F0E4D4] selection:text-[#2B2118]">
       <Header activeSection={activeSection} />
       
       <main className="flex-grow">

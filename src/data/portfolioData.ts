@@ -242,11 +242,11 @@ export const portfolioData: PortfolioData = {
       ],
       accentColor: {
         name: "violet",
-        text: "text-violet-400",
-        bg: "bg-violet-500/10",
-        border: "border-violet-500/30",
-        glow: "rgba(139, 92, 246, 0.4)",
-        grad: "linear-gradient(135deg,#8B5CF6 0%,#6366F1 60%,#0C0C0C 100%)"
+        text: "text-violet-700",
+        bg: "bg-violet-50",
+        border: "border-violet-200",
+        glow: "rgba(109, 40, 217, 0.15)",
+        grad: "linear-gradient(135deg,#7C3AED 0%,#4338CA 60%,#312E81 100%)"
       }
     },
     {
@@ -283,11 +283,11 @@ export const portfolioData: PortfolioData = {
       ],
       accentColor: {
         name: "cyan",
-        text: "text-cyan-400",
-        bg: "bg-cyan-500/10",
-        border: "border-cyan-500/30",
-        glow: "rgba(6, 182, 212, 0.4)",
-        grad: "linear-gradient(135deg,#06B6D4 0%,#3B82F6 60%,#18011F 100%)"
+        text: "text-cyan-800",
+        bg: "bg-cyan-50",
+        border: "border-cyan-200",
+        glow: "rgba(14, 116, 144, 0.15)",
+        grad: "linear-gradient(135deg,#0E7490 0%,#1D4ED8 60%,#1E3A8A 100%)"
       }
     },
     {
@@ -323,11 +323,11 @@ export const portfolioData: PortfolioData = {
       ],
       accentColor: {
         name: "emerald",
-        text: "text-emerald-400",
-        bg: "bg-emerald-500/10",
-        border: "border-emerald-500/30",
-        glow: "rgba(16, 185, 129, 0.4)",
-        grad: "linear-gradient(135deg,#10B981 0%,#06B6D4 60%,#0C0C0C 100%)"
+        text: "text-emerald-800",
+        bg: "bg-emerald-50",
+        border: "border-emerald-200",
+        glow: "rgba(6, 95, 70, 0.15)",
+        grad: "linear-gradient(135deg,#047857 0%,#0F766E 60%,#134E4A 100%)"
       }
     },
     {
@@ -365,11 +365,11 @@ export const portfolioData: PortfolioData = {
       ],
       accentColor: {
         name: "indigo",
-        text: "text-indigo-400",
-        bg: "bg-indigo-500/10",
-        border: "border-indigo-500/30",
-        glow: "rgba(129, 140, 248, 0.4)",
-        grad: "linear-gradient(135deg,#818CF8 0%,#06B6D4 65%,#111014 100%)"
+        text: "text-indigo-800",
+        bg: "bg-indigo-50",
+        border: "border-indigo-200",
+        glow: "rgba(55, 48, 163, 0.15)",
+        grad: "linear-gradient(135deg,#4338CA 0%,#0E7490 65%,#1E1B4B 100%)"
       }
     }
   ],
@@ -387,10 +387,10 @@ export const portfolioData: PortfolioData = {
       tag: "PM SPRINT",
       accentColor: {
         name: "cyan",
-        text: "text-cyan-400",
-        bg: "bg-cyan-500/10",
-        border: "border-cyan-500/30",
-        glow: "rgba(6, 182, 212, 0.25)"
+        text: "text-cyan-800",
+        bg: "bg-cyan-50",
+        border: "border-cyan-200",
+        glow: "rgba(14, 116, 144, 0.1)"
       }
     },
     {
@@ -404,10 +404,10 @@ export const portfolioData: PortfolioData = {
       tag: "GROWTH STRATEGY",
       accentColor: {
         name: "emerald",
-        text: "text-emerald-400",
-        bg: "bg-emerald-500/10",
-        border: "border-emerald-500/30",
-        glow: "rgba(16, 185, 129, 0.25)"
+        text: "text-emerald-800",
+        bg: "bg-emerald-50",
+        border: "border-emerald-200",
+        glow: "rgba(6, 95, 70, 0.1)"
       }
     },
     {
@@ -421,10 +421,10 @@ export const portfolioData: PortfolioData = {
       tag: "CAMPUS CHALLENGE",
       accentColor: {
         name: "indigo",
-        text: "text-indigo-400",
-        bg: "bg-indigo-500/10",
-        border: "border-indigo-500/30",
-        glow: "rgba(129, 140, 248, 0.25)"
+        text: "text-indigo-800",
+        bg: "bg-indigo-50",
+        border: "border-indigo-200",
+        glow: "rgba(55, 48, 163, 0.1)"
       }
     }
   ],
@@ -446,9 +446,9 @@ export const portfolioData: PortfolioData = {
         "Collaborated with cross-functional media teams to ensure clear communication and brand consistency."
       ],
       accentColor: {
-        text: "text-cyan-400",
-        bg: "bg-cyan-500/10",
-        border: "border-cyan-500/30"
+        text: "text-[#8A6035]",
+        bg: "bg-[#F0E4D4]",
+        border: "border-[#E6DFD3]"
       }
     },
     {
@@ -466,9 +466,9 @@ export const portfolioData: PortfolioData = {
         "Managed cross-functional collaboration under tight sprint deadlines to deliver competitive case submissions."
       ],
       accentColor: {
-        text: "text-emerald-400",
-        bg: "bg-emerald-500/10",
-        border: "border-emerald-500/30"
+        text: "text-[#2F2A8F]",
+        bg: "bg-[#2F2A8F]/10",
+        border: "border-[#2F2A8F]/20"
       }
     }
   ]

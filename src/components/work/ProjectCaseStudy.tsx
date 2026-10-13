@@ -15,10 +15,10 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
   const [isCertOpen, setIsCertOpen] = useState(false);
 
   return (
-    <div className="relative w-full rounded-3xl bg-[#101318] border border-white/10 p-6 sm:p-8 lg:p-12 shadow-2xl transition-all duration-300">
+    <div className="relative w-full rounded-3xl bg-[#FFFFFF] border border-[#E6DFD3] p-6 sm:p-8 lg:p-12 shadow-md transition-all duration-300">
       {/* Subtle Background Glow */}
       <div
-        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none -z-0 opacity-25"
+        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none -z-0 opacity-10"
         style={{ background: accentColor.glow }}
       />
 
@@ -32,26 +32,26 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
                 <span className={`text-sm font-mono font-bold ${accentColor.text}`}>
                   {project.number}
                 </span>
-                <span className="text-slate-600 font-mono text-xs">/</span>
-                <span className="text-xs font-mono tracking-widest text-slate-400 uppercase">
+                <span className="text-[#8C7B6A] font-mono text-xs">/</span>
+                <span className="text-xs font-mono tracking-widest text-[#8C7B6A] uppercase">
                   {project.category}
                 </span>
               </div>
 
               {/* Compact Achievement Badge */}
-              <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold ${accentColor.bg} ${accentColor.text} border ${accentColor.border} shadow-sm`}>
+              <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-semibold ${accentColor.bg} ${accentColor.text} border ${accentColor.border} shadow-xs`}>
                 <Trophy size={13} className="flex-shrink-0" />
                 <span>{project.badgeText}</span>
               </div>
             </div>
 
             {/* Project Title */}
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-[1.1]">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#2B2118] leading-[1.1]">
               {project.title}
             </h3>
 
             {/* One-Liner Summary */}
-            <p className="text-sm sm:text-base font-normal text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base font-normal text-[#6B5B4B] leading-relaxed">
               {project.oneLiner}
             </p>
 
@@ -60,7 +60,7 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
               <button
                 type="button"
                 onClick={() => setIsDeckOpen(true)}
-                className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full ${accentColor.bg} ${accentColor.text} border ${accentColor.border} hover:bg-white/10 hover:text-white text-xs font-mono font-semibold transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95`}
+                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#A97F50] text-white hover:bg-[#8A6035] text-xs font-mono font-semibold transition-all shadow-sm cursor-pointer hover:scale-105 active:scale-95"
               >
                 <Layers size={14} />
                 <span>View Deck</span>
@@ -70,17 +70,17 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
                 <button
                   type="button"
                   onClick={() => setIsCertOpen(true)}
-                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#161922] border border-white/15 hover:border-white/35 text-xs font-mono font-semibold text-slate-200 hover:text-white hover:bg-white/10 transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#FFFFFF] border border-[#A97F50] text-[#8A6035] hover:bg-[#F0E4D4] text-xs font-mono font-semibold transition-all shadow-sm cursor-pointer hover:scale-105 active:scale-95"
                 >
-                  <Award size={14} className={accentColor.text} />
+                  <Award size={14} className="text-[#8A6035]" />
                   <span>View Certificate</span>
                 </button>
               ) : project.certificateStatus === "coming_soon" ? (
                 <div
-                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#161922] border border-white/15 text-xs font-mono font-medium text-slate-300 shadow-sm cursor-default select-none"
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#FBF8F3] border border-[#E6DFD3] text-xs font-mono font-medium text-[#8C7B6A] shadow-xs cursor-default select-none"
                   title="Certificate: Coming Soon"
                 >
-                  <Award size={14} className="text-amber-400/90" />
+                  <Award size={14} className="text-[#A97F50]" />
                   <span>Certificate: Coming Soon</span>
                 </div>
               ) : null}
@@ -92,12 +92,12 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
             {project.panels.map((panel, idx) => (
               <div
                 key={idx}
-                className="p-3 rounded-xl bg-[#161922] border border-white/5 text-center space-y-0.5"
+                className="p-3 rounded-xl bg-[#F7F4EF] border border-[#E6DFD3] text-center space-y-0.5"
               >
                 <div className={`text-sm sm:text-base font-mono font-bold ${accentColor.text}`}>
                   {panel.key}
                 </div>
-                <div className="text-[10px] sm:text-[10.5px] font-mono text-slate-400 leading-tight">
+                <div className="text-[10px] sm:text-[10.5px] font-mono text-[#8C7B6A] leading-tight">
                   {panel.label}
                 </div>
               </div>
@@ -116,9 +116,9 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
             {project.bullets.map((bullet, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-3 text-xs sm:text-[13px] text-slate-300 leading-relaxed"
+                className="flex items-start gap-3 text-xs sm:text-[13px] text-[#6B5B4B] leading-relaxed"
               >
-                <span className={`w-2 h-2 rounded-full ${accentColor.text.replace('text-', 'bg-')} flex-shrink-0 mt-1.5 shadow-[0_0_8px_currentColor]`} />
+                <span className="w-2 h-2 rounded-full bg-[#A97F50] flex-shrink-0 mt-1.5 shadow-xs" />
                 <span>{bullet}</span>
               </div>
             ))}
@@ -146,9 +146,9 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
             <button
               type="button"
               onClick={() => setIsDeckOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-white/10 bg-[#161922]/80 hover:bg-white/10 text-xs font-mono text-slate-300 hover:text-white transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] text-xs font-mono text-[#6B5B4B] hover:text-[#2B2118] transition-all cursor-pointer shadow-xs"
             >
-              <Layers size={13} className={accentColor.text} />
+              <Layers size={13} className="text-[#8A6035]" />
               <span>Expand Deck</span>
             </button>
 
@@ -156,16 +156,16 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
               <button
                 type="button"
                 onClick={() => setIsCertOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-white/10 bg-[#161922]/80 hover:bg-white/10 text-xs font-mono text-slate-300 hover:text-white transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] text-xs font-mono text-[#6B5B4B] hover:text-[#2B2118] transition-all cursor-pointer shadow-xs"
               >
-                <Award size={13} className={accentColor.text} />
+                <Award size={13} className="text-[#8A6035]" />
                 <span>Certificate</span>
               </button>
             ) : project.certificateStatus === "coming_soon" ? (
               <div
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-white/10 bg-[#161922]/60 text-xs font-mono text-slate-400 cursor-default select-none"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[#E6DFD3] bg-[#FBF8F3] text-xs font-mono text-[#8C7B6A] cursor-default select-none"
               >
-                <Award size={13} className="text-amber-400/90" />
+                <Award size={13} className="text-[#A97F50]" />
                 <span>Certificate: Coming Soon</span>
               </div>
             ) : null}

@@ -7,25 +7,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: {
-          DEFAULT: '#f8fafc',
-          light: '#ffffff',
-          subtle: '#f1f5f9',
-          muted: '#eef2f6',
-          card: '#ffffff'
+        bg: {
+          DEFAULT: '#F7F4EF',
+          alt: '#F1ECE4',
         },
-        brand: {
-          navy: '#0f172a',
-          slate: '#1e293b',
-          muted: '#475569',
-          light: '#64748b',
-          faint: '#94a3b8',
-          border: '#e2e8f0',
-          borderSubtle: '#cbd5e1',
-          accent: '#2563eb',
-          accentPurple: '#6366f1',
-          accentLight: '#eff6ff'
-        }
+        surface: {
+          DEFAULT: '#FFFFFF',
+          soft: '#FBF8F3',
+        },
+        border: {
+          DEFAULT: '#E6DFD3',
+          strong: '#D8CEBF',
+        },
+        themeText: {
+          DEFAULT: '#2B2118',
+          muted: '#6B5B4B',
+          subtle: '#8C7B6A',
+        },
+        accent: {
+          DEFAULT: '#A97F50',
+          strong: '#8A6035',
+          soft: '#F0E4D4',
+        },
+        secondary: {
+          DEFAULT: '#2F2A8F',
+          soft: '#EBEAFD',
+        },
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
@@ -37,10 +44,10 @@ export default {
     },
   },
   safelist: [
-    'text-violet-400', 'bg-violet-500/10', 'border-violet-500/30', 'border-violet-500/20', 'bg-violet-400',
-    'text-cyan-400', 'bg-cyan-500/10', 'border-cyan-500/30', 'border-cyan-500/20', 'bg-cyan-400',
-    'text-emerald-400', 'bg-emerald-500/10', 'border-emerald-500/30', 'border-emerald-500/20', 'bg-emerald-400',
-    'text-indigo-400', 'bg-indigo-500/10', 'border-indigo-500/30', 'border-indigo-500/20', 'bg-indigo-400',
+    'text-violet-700', 'bg-violet-50', 'border-violet-200', 'bg-violet-700',
+    'text-cyan-800', 'bg-cyan-50', 'border-cyan-200', 'bg-cyan-800',
+    'text-emerald-800', 'bg-emerald-50', 'border-emerald-200', 'bg-emerald-800',
+    'text-indigo-800', 'bg-indigo-50', 'border-indigo-200', 'bg-indigo-800',
   ],
   plugins: [],
 }

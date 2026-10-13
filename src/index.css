@@ -3,43 +3,59 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --bg: #0c0c0c;
-  --bg2: #111014;
-  --text: #D7E2EA;
-  --muted: rgba(215, 226, 234, 0.65);
-  --line: rgba(215, 226, 234, 0.12);
-  --grad-cyan: linear-gradient(135deg, #06B6D4 0%, #3B82F6 55%, #8B5CF6 100%);
-  --head-grad: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%);
+  color-scheme: light;
+
+  /* Backgrounds */
+  --bg: #F7F4EF;
+  --bg-alt: #F1ECE4;
+  --surface: #FFFFFF;
+  --surface-soft: #FBF8F3;
+  --border: #E6DFD3;
+  --border-strong: #D8CEBF;
+
+  /* Text */
+  --text: #2B2118;
+  --text-muted: #6B5B4B;
+  --text-subtle: #8C7B6A;
+
+  /* Accents */
+  --accent: #A97F50;
+  --accent-strong: #8A6035;
+  --accent-soft: #F0E4D4;
+  --secondary: #2F2A8F;
+  --secondary-soft: #EBEAFD;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(43, 33, 24, 0.04);
+  --shadow-md: 0 4px 20px rgba(43, 33, 24, 0.06);
+  --shadow-lg: 0 10px 30px rgba(43, 33, 24, 0.08);
+  --shadow-xl: 0 20px 45px rgba(43, 33, 24, 0.1);
 }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #0c0c0c;
-  background-image: 
-    radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
-  background-attachment: fixed;
+  background-color: var(--bg);
   color: var(--text);
+  overflow-x: hidden;
 }
 
-/* Custom dark scrollbar */
+/* Custom warm light scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0c0c0c;
+  background: #F7F4EF;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #D8CEBF;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #BDB09E;
 }
 
 /* Hide scrollbar */
@@ -51,9 +67,19 @@ body {
   scrollbar-width: none;
 }
 
-/* Gradient heading effect */
+/* Subtle paper / marble texture echo for hero */
+.paper-texture {
+  background-color: var(--bg);
+  background-image: 
+    radial-gradient(circle at 100% 0%, rgba(169, 127, 80, 0.08) 0px, transparent 55%),
+    radial-gradient(circle at 0% 100%, rgba(47, 42, 143, 0.04) 0px, transparent 55%),
+    radial-gradient(rgba(107, 91, 75, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+}
+
+/* Warm gradient heading effect */
 .head-grad {
-  background: linear-gradient(180deg, #FFFFFF 20%, #94A3B8 100%);
+  background: linear-gradient(180deg, #2B2118 10%, #A97F50 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -8,7 +8,7 @@ export const Achievements: React.FC = () => {
   const { achievements } = portfolioData;
 
   return (
-    <section id="achievements" className="py-16 sm:py-24 bg-[#0c0c0c] text-white">
+    <section id="achievements" className="py-16 sm:py-24 bg-[#F7F4EF] text-[#2B2118]">
       <Divider className="mb-12 sm:mb-16" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
@@ -21,11 +21,11 @@ export const Achievements: React.FC = () => {
           {achievements.map((item) => (
             <div
               key={item.id}
-              className="group relative rounded-3xl border border-white/10 bg-[#111014] p-6 sm:p-8 hover:border-white/25 transition-all duration-300 shadow-xl flex flex-col justify-between overflow-hidden"
+              className="group relative rounded-3xl border border-[#E6DFD3] bg-[#FFFFFF] p-6 sm:p-8 hover:border-[#A97F50]/40 transition-all duration-300 shadow-[0_4px_20px_rgba(43,33,24,0.06)] hover:shadow-[0_8px_30px_rgba(43,33,24,0.1)] flex flex-col justify-between overflow-hidden"
             >
-              {/* Subtle ambient glow behind card */}
+              {/* Subtle ambient warm glow behind card */}
               <div
-                className="absolute -top-12 -right-12 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                className="absolute -top-12 -right-12 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-10 group-hover:opacity-20 transition-opacity duration-300"
                 style={{ background: item.accentColor.glow }}
               />
 
@@ -36,8 +36,8 @@ export const Achievements: React.FC = () => {
                     <span className={`text-base font-mono font-bold ${item.accentColor.text}`}>
                       {item.number}
                     </span>
-                    <span className="text-slate-700 font-mono text-xs">/</span>
-                    <span className="text-[11px] font-mono tracking-widest text-slate-400 uppercase">
+                    <span className="text-[#8C7B6A] font-mono text-xs">/</span>
+                    <span className="text-[11px] font-mono tracking-widest text-[#8C7B6A] uppercase">
                       RANKING & HONOR
                     </span>
                   </div>
@@ -51,37 +51,37 @@ export const Achievements: React.FC = () => {
                 </div>
 
                 {/* Main Stat Centerpiece Box */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-[#09090c] border border-white/5 text-center space-y-1.5 shadow-inner">
-                  <div className="text-[11px] font-mono tracking-widest text-slate-400 uppercase">
+                <div className="p-5 sm:p-6 rounded-2xl bg-[#FBF8F3] border border-[#E6DFD3] text-center space-y-1.5 shadow-sm">
+                  <div className="text-[11px] font-mono tracking-widest text-[#8C7B6A] uppercase">
                     RESULT / STANDING
                   </div>
                   <div className={`text-2xl sm:text-3xl font-black tracking-tight font-mono ${item.accentColor.text}`}>
                     {item.stat}
                   </div>
-                  <div className="text-xs font-mono text-slate-300 pt-0.5">
+                  <div className="text-xs font-mono text-[#6B5B4B] pt-0.5">
                     {item.subtitle}
                   </div>
                 </div>
 
                 {/* Title & Description */}
                 <div className="space-y-2">
-                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#2B2118] group-hover:text-[#8A6035] transition-colors">
                     {item.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#6B5B4B] leading-relaxed">
                     {item.description}
                   </p>
                 </div>
               </div>
 
               {/* Bottom Footer Accent */}
-              <div className="relative z-10 pt-5 mt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-500">
+              <div className="relative z-10 pt-5 mt-4 border-t border-[#E6DFD3] flex items-center justify-between text-xs font-mono text-[#8C7B6A]">
                 <div className="flex items-center gap-1.5">
                   <Award size={13} className={item.accentColor.text} />
                   <span>National Competition</span>
                 </div>
-                <span className="text-[11px] text-slate-400">Verified</span>
+                <span className="text-[11px] text-[#8C7B6A]">Verified</span>
               </div>
             </div>
           ))}
