@@ -3,7 +3,7 @@ import { ProjectItem } from "../../data/portfolioData";
 import { ProjectTags } from "./ProjectTags";
 import { Deck } from "./Deck";
 import { CertificateModal } from "./CertificateModal";
-import { Trophy, Award, Layers } from "lucide-react";
+import { Trophy, Award, Layers, ExternalLink } from "lucide-react";
 
 interface ProjectCaseStudyProps {
   project: ProjectItem;
@@ -14,6 +14,13 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
   const [isDeckOpen, setIsDeckOpen] = useState(false);
   const [isCertOpen, setIsCertOpen] = useState(false);
 
+  const resolveUrl = (url?: string) => {
+    if (!url) return "#";
+    if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("/")) return url;
+    const base = import.meta.env.BASE_URL || "/";
+    return `${base}${url.replace(/^\//, "")}`;
+  };
+
   return (
     <div className="relative w-full rounded-3xl bg-[#FFFFFF] border border-[#E6DFD3] p-6 sm:p-8 lg:p-12 shadow-md transition-all duration-300">
       {/* Subtle Background Glow */}
@@ -23,8 +30,8 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
       />
 
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-        {/* Left Column: Project Details & Analytical Breakdown */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Left Column: Project Details & Action Links */}
+        <div className="lg:col-span-5 space-y-5">
           {/* Header Metadata */}
           <div className="space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
@@ -55,16 +62,28 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
               {project.oneLiner}
             </p>
 
-            {/* Primary Action Buttons (Prominent in Header) */}
+            {/* Skills / Category Tags */}
+            <div className="pt-1">
+              <ProjectTags
+                tags={project.tags}
+                accentText={accentColor.text}
+                accentBorder={accentColor.border}
+              />
+            </div>
+
+            {/* Primary Action Buttons */}
             <div className="pt-2 flex flex-wrap items-center gap-2.5 sm:gap-3">
-              <button
-                type="button"
-                onClick={() => setIsDeckOpen(true)}
+              <a
+                href={resolveUrl(project.deckUrl)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#A97F50] text-white hover:bg-[#8A6035] text-xs font-mono font-semibold transition-all shadow-sm cursor-pointer hover:scale-105 active:scale-95"
+                title="Open PDF deck in a new tab"
               >
                 <Layers size={14} />
                 <span>View Deck</span>
-              </button>
+                <ExternalLink size={12} className="opacity-80" />
+              </a>
 
               {project.certificateUrl ? (
                 <button
@@ -85,43 +104,6 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
                 </div>
               ) : null}
             </div>
-          </div>
-
-          {/* 3 Metric / Impact Panels */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 py-1">
-            {project.panels.map((panel, idx) => (
-              <div
-                key={idx}
-                className="p-3 rounded-xl bg-[#F7F4EF] border border-[#E6DFD3] text-center space-y-0.5"
-              >
-                <div className={`text-sm sm:text-base font-mono font-bold ${accentColor.text}`}>
-                  {panel.key}
-                </div>
-                <div className="text-[10px] sm:text-[10.5px] font-mono text-[#8C7B6A] leading-tight">
-                  {panel.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* PM & Analytics Tags */}
-          <ProjectTags
-            tags={project.tags}
-            accentText={accentColor.text}
-            accentBorder={accentColor.border}
-          />
-
-          {/* Key Insight Bullet Points */}
-          <div className="space-y-2.5 pt-1">
-            {project.bullets.map((bullet, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-3 text-xs sm:text-[13px] text-[#6B5B4B] leading-relaxed"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#A97F50] flex-shrink-0 mt-1.5 shadow-xs" />
-                <span>{bullet}</span>
-              </div>
-            ))}
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
-import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2, X, ExternalLink } from "lucide-react";
 import { SlideItem } from "../../data/portfolioData";
 
 interface DeckProps {
@@ -20,6 +20,7 @@ interface DeckProps {
 export const Deck: React.FC<DeckProps> = ({
   slides,
   name,
+  deckUrl,
   isOpen: externalIsOpen,
   onOpenChange,
   theme: _theme,
@@ -253,6 +254,20 @@ export const Deck: React.FC<DeckProps> = ({
                   <span className="text-[#8C7B6A] mx-1">/</span>
                   <span className="text-[#6B5B4B]">{String(total).padStart(2, "0")}</span>
                 </div>
+
+                {/* Open PDF in New Tab */}
+                {deckUrl && (
+                  <a
+                    href={resolveSrc(deckUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] text-xs font-mono font-medium text-[#6B5B4B] hover:text-[#2B2118] transition-all shadow-xs"
+                    title="Open PDF deck in new tab"
+                  >
+                    <ExternalLink size={13} className="text-[#8A6035]" />
+                    <span className="hidden sm:inline">Open PDF</span>
+                  </a>
+                )}
 
                 {/* Prominent Close X Button */}
                 <button

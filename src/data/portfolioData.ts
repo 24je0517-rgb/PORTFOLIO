@@ -22,8 +22,8 @@ export interface ProjectItem {
   achievement: string;
   badgeText: string;
   tags: string[];
-  bullets: string[];
-  panels: MetricPanel[];
+  bullets?: string[];
+  panels?: MetricPanel[];
   slides: SlideItem[];
   accentColor: {
     name: string;
@@ -208,8 +208,39 @@ export const portfolioData: PortfolioData = {
   // WORK / PROJECTS SECTION
   projects: [
     {
-      id: "jar",
+      id: "ascend",
       number: "01",
+      shortName: "ASCEND",
+      title: "ASCEND — Responsible Credit for Gen Z",
+      category: "Product Strategy | Fintech | CaseBlitz",
+      oneLiner:
+        "A fintech product concept designed to help first-time borrowers access transparent credit, understand affordability, and build responsible repayment habits through financial education and NBFC partnerships.",
+      deckUrl: "decks/ascend.pdf",
+      certificateStatus: "coming_soon",
+      achievement: "Ranked among the Top 28 teams out of 500+ teams in Round 1 of CaseBlitz competition.",
+      badgeText: "CASEBLITZ",
+      tags: ["PRODUCT STRATEGY", "FINTECH", "NBFC PARTNERSHIPS", "AFFORDABLE CREDIT", "GEN Z"],
+      slides: [
+        { src: "decks/ascend/slide-01.png", label: "Cover & Case Blitz" },
+        { src: "decks/ascend/slide-02.png", label: "Executive Summary & Market Analysis" },
+        { src: "decks/ascend/slide-03.png", label: "User Journey & Persona (Kabir)" },
+        { src: "decks/ascend/slide-04.png", label: "Product Solution & Core Offerings" },
+        { src: "decks/ascend/slide-05.png", label: "Business Model & Competitor Analysis" },
+        { src: "decks/ascend/slide-06.png", label: "Metrics Linkage & Risk Guardrails" },
+        { src: "decks/ascend/slide-07.png", label: "Summary & Concluding Slide" }
+      ],
+      accentColor: {
+        name: "teal",
+        text: "text-teal-800",
+        bg: "bg-teal-50",
+        border: "border-teal-200",
+        glow: "rgba(13, 148, 136, 0.15)",
+        grad: "linear-gradient(135deg,#0D9488 0%,#059669 60%,#064E3B 100%)"
+      }
+    },
+    {
+      id: "jar",
+      number: "02",
       shortName: "JAR APP",
       title: "Jar – Product Engagement & Growth Case Study",
       category: "Product Management • Case Competition • Fintech",
@@ -219,17 +250,6 @@ export const portfolioData: PortfolioData = {
       achievement: "National Level Product & Consulting Case Competition – IIT(ISM) Dhanbad (Caseblitz)",
       badgeText: "CASEBLITZ",
       tags: ["PRODUCT STRATEGY", "GROWTH & RETENTION", "FINTECH", "MECE RCA", "GAMIFICATION"],
-      panels: [
-        { key: "MWAS", label: "North Star Metric" },
-        { key: "5 Tiers", label: "EXP Privilege System" },
-        { key: "Fintech", label: "Micro-Savings & Gold" }
-      ],
-      bullets: [
-        "Diagnosed Jar’s silent saving engagement challenge through competitor analysis (Gullak, OroPocket, Paytm) and MECE root-cause analysis across Value, Motivation, Trigger, and Habit Formation.",
-        "Proposed a 5-level tier-based privilege system (Starter to Premium) where users earn EXP through meaningful actions and unlock progressively valuable benefits.",
-        "Mapped user journeys and modeled customer engagement funnel economics to drive higher saving continuity, cross-sell opportunities, and lifetime value.",
-        "Formulated a comprehensive metrics framework centered on Meaningful Weekly Active Savers (MWAS) as the North Star Metric, supported by WAU, tier progression rate, and retention."
-      ],
       slides: [
         { src: "decks/jar/slide-01.png", label: "Cover & PM Case Competition" },
         { src: "decks/jar/slide-02.png", label: "Executive Summary & Redefined Problem" },
@@ -251,7 +271,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "credit-planner",
-      number: "02",
+      number: "03",
       shortName: "CREDIT PLANNER",
       title: "Credit Planner – PM Challenge 2026",
       category: "Product Thinking · UX/UI Design · Fintech",
@@ -262,16 +282,6 @@ export const portfolioData: PortfolioData = {
       achievement: "Secured 7th rank out of 119 participants in the 2nd round of Product Improvement Sprint of a Real Fintech Product – Credit Planner.",
       badgeText: "7th / 119",
       tags: ["UX AUDIT", "USER JOURNEY", "FINTECH", "UX/UI", "PRODUCT THINKING"],
-      panels: [
-        { key: "Rank 7", label: "out of 119 participants" },
-        { key: "3 Flows", label: "Find · Compare · Select" },
-        { key: "Fintech", label: "Credit Card Ecosystem" }
-      ],
-      bullets: [
-        "Conducted a UX audit of the Credit Planner experience and identified usability issues across the “Find My Card”, “Compare Cards”, and card selection journeys.",
-        "Proposed UI improvements to improve card discoverability, comparison clarity, and ease of card selection based on identified user pain points.",
-        "Redesigned key interaction elements, including card highlighting and selection areas, to create a more intuitive and user-friendly experience."
-      ],
       slides: [
         { src: "decks/credit-planner/slide-01.png", label: "Cover & PM Challenge" },
         { src: "decks/credit-planner/slide-02.png", label: "Find My Card Flow" },
@@ -292,7 +302,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "shasang-ai",
-      number: "03",
+      number: "04",
       shortName: "SHASANG AI",
       title: "ShaSang AI – Growth Strategy",
       category: "Product Thinking · Growth Strategy · UX/UI Design",
@@ -303,17 +313,6 @@ export const portfolioData: PortfolioData = {
       achievement: "Secured 6th rank out of 364 participants in the ShaSang A.I. National Growth Strategy Challenge.",
       badgeText: "6th / 364",
       tags: ["GROWTH STRATEGY", "USER PERSONA", "RETENTION", "GAMIFICATION", "PRODUCT THINKING"],
-      panels: [
-        { key: "6th Rank", label: "out of 364 participants" },
-        { key: "5,000+", label: "Organic Users Target" },
-        { key: "SAI Coins", label: "Gamified Retention Loop" }
-      ],
-      bullets: [
-        "Designed a low-cost organic growth strategy targeting 5,000+ new users through user journey analysis and product-led acquisition.",
-        "Created a user persona and mapped key pain points across discovery, navigation, and test-taking journeys to identify UX opportunities and UI gaps.",
-        "Proposed a gamified “SAI Coins” ecosystem with task-based rewards, referrals, and joining bonuses to drive acquisition and retention.",
-        "Developed retention initiatives including daily missions, regional leader boards, and monthly competitions to increase engagement and repeat usage."
-      ],
       slides: [
         { src: "decks/shasang-ai/slide-01.png", label: "Growth Strategy Cover" },
         { src: "decks/shasang-ai/slide-02.png", label: "User Journey, Personas & UI Gaps" },
@@ -328,48 +327,6 @@ export const portfolioData: PortfolioData = {
         border: "border-emerald-200",
         glow: "rgba(6, 95, 70, 0.15)",
         grad: "linear-gradient(135deg,#047857 0%,#0F766E 60%,#134E4A 100%)"
-      }
-    },
-    {
-      id: "dattansh",
-      number: "04",
-      shortName: "DATTANSH",
-      title: "Dattansh – Rice Economy Analytics",
-      category: "Excel · Data Analytics · Product Analytics",
-      oneLiner: "Deconstructing 50 years of agricultural yield, MSP policy shifts, and ~1,702L tonne forecasting.",
-      deckUrl: "decks/dattansh.pdf",
-      certificateUrl: "certificates/dattansh.png",
-      certificateTitle: "Dattansh: Data Analytics – Certificate of Participation (MANAGE Hyderabad)",
-      achievement: "50+ Years of India’s Rice Economy Data Analyzed Across MSP, Area, Yield, and Production.",
-      badgeText: "50+ Years Data",
-      tags: ["DATA ANALYSIS", "PRODUCT ANALYTICS", "FORECASTING", "CAGR", "SUPPLY RISK"],
-      panels: [
-        { key: "50+ Yrs", label: "Historical Agriculture Data" },
-        { key: "~1,702L", label: "Tonnes 2026-27 Forecast" },
-        { key: "2.74%", label: "Production 50-Yr CAGR" }
-      ],
-      bullets: [
-        "Analyzed 50+ years of India’s rice economy data across MSP, cultivation area, yield, and production to identify long-term growth trends and supply-side risks.",
-        "Performed exploratory and trend analysis using YoY growth, CAGR, and production variance to identify key drivers of production and historical supply shocks.",
-        "Identified yield and cultivated area as key production drivers and analyzed volatility to derive actionable insights for procurement and capacity planning.",
-        "Built a 2026–27 production forecast of ~1,702 lakh tonnes using recent historical CAGR, translating analytical findings into forward-looking business insights.",
-        "Converted data-driven findings into strategic recommendations focused on productivity improvement, supply-risk mitigation, and long-term capacity planning."
-      ],
-      slides: [
-        { src: "decks/dattansh/slide-01.png", label: "Dattansh: Data Analytics Cover" },
-        { src: "decks/dattansh/slide-02.png", label: "Problem Statement & 50-Year Dataset" },
-        { src: "decks/dattansh/slide-03.png", label: "Supply Growth Drivers & Key Findings" },
-        { src: "decks/dattansh/slide-04.png", label: "Supply Risks & 10-Year CAGR Matrix" },
-        { src: "decks/dattansh/slide-05.png", label: "Final Conclusion & 2026-27 Forecast" },
-        { src: "decks/dattansh/slide-06.png", label: "Executive Summary & Thank You" }
-      ],
-      accentColor: {
-        name: "indigo",
-        text: "text-indigo-800",
-        bg: "bg-indigo-50",
-        border: "border-indigo-200",
-        glow: "rgba(55, 48, 163, 0.15)",
-        grad: "linear-gradient(135deg,#4338CA 0%,#0E7490 65%,#1E1B4B 100%)"
       }
     }
   ],
@@ -411,20 +368,20 @@ export const portfolioData: PortfolioData = {
       }
     },
     {
-      id: "ach-bajaj-torq",
+      id: "ach-caseblitz",
       number: "03",
-      stat: "ROUND 1 CLEARED",
-      title: "Bajaj TORQ 2026",
-      subtitle: "National Level Campus Challenge",
+      stat: "TOP 28 / 500+",
+      title: "CaseBlitz — National Product Case Competition",
+      subtitle: "Jar App · Round 1 Selection",
       description:
-        "Successfully cleared the 1st Round of Bajaj TORQ 2026 – a National Level Campus Challenge.",
-      tag: "CAMPUS CHALLENGE",
+        "Ranked among the Top 28 teams out of 500+ teams in Round 1 of the CaseBlitz competition for improving the Jar app.",
+      tag: "CASE COMPETITION",
       accentColor: {
-        name: "indigo",
-        text: "text-indigo-800",
-        bg: "bg-indigo-50",
-        border: "border-indigo-200",
-        glow: "rgba(55, 48, 163, 0.1)"
+        name: "violet",
+        text: "text-violet-800",
+        bg: "bg-violet-50",
+        border: "border-violet-200",
+        glow: "rgba(109, 40, 217, 0.1)"
       }
     }
   ],
