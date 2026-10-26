@@ -16,6 +16,7 @@ export interface ProjectItem {
   category: string;
   oneLiner: string;
   deckUrl: string;
+  drivePreviewUrl?: string;
   certificateUrl?: string;
   certificateTitle?: string;
   certificateStatus?: "available" | "coming_soon";
@@ -24,7 +25,7 @@ export interface ProjectItem {
   tags: string[];
   bullets?: string[];
   panels?: MetricPanel[];
-  slides: SlideItem[];
+  slides?: SlideItem[];
   accentColor: {
     name: string;
     text: string;
@@ -208,44 +209,14 @@ export const portfolioData: PortfolioData = {
   // WORK / PROJECTS SECTION
   projects: [
     {
-      id: "ascend",
-      number: "01",
-      shortName: "ASCEND",
-      title: "ASCEND — Responsible Credit for Gen Z",
-      category: "Product Strategy | Fintech | CaseBlitz",
-      oneLiner:
-        "A fintech product concept designed to help first-time borrowers access transparent credit, understand affordability, and build responsible repayment habits through financial education and NBFC partnerships.",
-      deckUrl: "decks/ascend.pdf",
-      certificateStatus: "coming_soon",
-      achievement: "Ranked among the Top 28 teams out of 500+ teams in Round 1 of CaseBlitz competition.",
-      badgeText: "CASEBLITZ",
-      tags: ["PRODUCT STRATEGY", "FINTECH", "NBFC PARTNERSHIPS", "AFFORDABLE CREDIT", "GEN Z"],
-      slides: [
-        { src: "decks/ascend/slide-01.png", label: "Cover & Case Blitz" },
-        { src: "decks/ascend/slide-02.png", label: "Executive Summary & Market Analysis" },
-        { src: "decks/ascend/slide-03.png", label: "User Journey & Persona (Kabir)" },
-        { src: "decks/ascend/slide-04.png", label: "Product Solution & Core Offerings" },
-        { src: "decks/ascend/slide-05.png", label: "Business Model & Competitor Analysis" },
-        { src: "decks/ascend/slide-06.png", label: "Metrics Linkage & Risk Guardrails" },
-        { src: "decks/ascend/slide-07.png", label: "Summary & Concluding Slide" }
-      ],
-      accentColor: {
-        name: "teal",
-        text: "text-teal-800",
-        bg: "bg-teal-50",
-        border: "border-teal-200",
-        glow: "rgba(13, 148, 136, 0.15)",
-        grad: "linear-gradient(135deg,#0D9488 0%,#059669 60%,#064E3B 100%)"
-      }
-    },
-    {
       id: "jar",
-      number: "02",
+      number: "01",
       shortName: "JAR APP",
       title: "Jar – Product Engagement & Growth Case Study",
       category: "Product Management • Case Competition • Fintech",
       oneLiner: "A product case study focused on improving active engagement in Jar while preserving its passive saving experience.",
-      deckUrl: "decks/jar.pdf",
+      deckUrl: "https://drive.google.com/file/d/1TXLmsr9yAkM6IVhYfkHm-bsjZou_44B_/view?usp=sharing",
+      drivePreviewUrl: "https://drive.google.com/file/d/1TXLmsr9yAkM6IVhYfkHm-bsjZou_44B_/preview",
       certificateStatus: "coming_soon",
       achievement: "National Level Product & Consulting Case Competition – IIT(ISM) Dhanbad (Caseblitz)",
       badgeText: "CASEBLITZ",
@@ -270,13 +241,76 @@ export const portfolioData: PortfolioData = {
       }
     },
     {
-      id: "credit-planner",
+      id: "ascend",
+      number: "02",
+      shortName: "ASCEND",
+      title: "ASCEND — Responsible Credit for Gen Z",
+      category: "Product Strategy | Fintech | CaseBlitz",
+      oneLiner:
+        "A fintech product concept designed to help first-time borrowers access transparent credit, understand affordability, and build responsible repayment habits through financial education and NBFC partnerships.",
+      deckUrl: "https://drive.google.com/file/d/1WvedeERTVGVSxhvT3QtfqgnGDyJPlKSN/view?usp=sharing",
+      drivePreviewUrl: "https://drive.google.com/file/d/1WvedeERTVGVSxhvT3QtfqgnGDyJPlKSN/preview",
+      certificateStatus: "coming_soon",
+      achievement: "Ranked among the Top 28 teams out of 500+ teams in Round 1 of CaseBlitz competition.",
+      badgeText: "CASEBLITZ",
+      tags: ["PRODUCT STRATEGY", "FINTECH", "NBFC PARTNERSHIPS", "AFFORDABLE CREDIT", "GEN Z"],
+      slides: [
+        { src: "decks/ascend/slide-01.png", label: "Cover & Case Blitz" },
+        { src: "decks/ascend/slide-02.png", label: "Executive Summary & Market Analysis" },
+        { src: "decks/ascend/slide-03.png", label: "User Journey & Persona (Kabir)" },
+        { src: "decks/ascend/slide-04.png", label: "Product Solution & Core Offerings" },
+        { src: "decks/ascend/slide-05.png", label: "Business Model & Competitor Analysis" },
+        { src: "decks/ascend/slide-06.png", label: "Metrics Linkage & Risk Guardrails" },
+        { src: "decks/ascend/slide-07.png", label: "Summary & Concluding Slide" }
+      ],
+      accentColor: {
+        name: "teal",
+        text: "text-teal-800",
+        bg: "bg-teal-50",
+        border: "border-teal-200",
+        glow: "rgba(13, 148, 136, 0.15)",
+        grad: "linear-gradient(135deg,#0D9488 0%,#059669 60%,#064E3B 100%)"
+      }
+    },
+    {
+      id: "shasang-ai",
       number: "03",
+      shortName: "SHASANG AI",
+      title: "ShaSang AI – Growth Strategy",
+      category: "Product Thinking · Growth Strategy · UX/UI Design",
+      oneLiner: "Product-led organic acquisition, SAI Coins tokenomics, and habit-forming retention loops.",
+      deckUrl: "https://drive.google.com/file/d/1ECPTt1y-7F7HkcTSHvLOz93AAkjCWmuT/view?usp=sharing",
+      drivePreviewUrl: "https://drive.google.com/file/d/1ECPTt1y-7F7HkcTSHvLOz93AAkjCWmuT/preview",
+      certificateUrl: "certificates/shasang-ai.png",
+      certificateTitle: "ShaSang A.I. – Certificate of Excellence (Rank 6)",
+      achievement: "Secured 6th rank out of 364 participants in the ShaSang A.I. National Growth Strategy Challenge.",
+      badgeText: "6th / 364",
+      tags: ["GROWTH STRATEGY", "USER PERSONA", "RETENTION", "GAMIFICATION", "PRODUCT THINKING"],
+      slides: [
+        { src: "decks/shasang-ai/slide-01.png", label: "Growth Strategy Cover" },
+        { src: "decks/shasang-ai/slide-02.png", label: "User Journey, Personas & UI Gaps" },
+        { src: "decks/shasang-ai/slide-03.png", label: "SAI Coins & User Acquisition" },
+        { src: "decks/shasang-ai/slide-04.png", label: "Retention Rate & Daily Missions" },
+        { src: "decks/shasang-ai/slide-05.png", label: "Strategic Summary & Thank You" }
+      ],
+      accentColor: {
+        name: "emerald",
+        text: "text-emerald-800",
+        bg: "bg-emerald-50",
+        border: "border-emerald-200",
+        glow: "rgba(6, 95, 70, 0.15)",
+        grad: "linear-gradient(135deg,#047857 0%,#0F766E 60%,#134E4A 100%)"
+      }
+    },
+    {
+      id: "credit-planner",
+      number: "04",
       shortName: "CREDIT PLANNER",
       title: "Credit Planner – PM Challenge 2026",
       category: "Product Thinking · UX/UI Design · Fintech",
       oneLiner: "UX audit and interface redesign to solve card discoverability and decision friction.",
-      deckUrl: "decks/credit-planner.pdf",
+      deckUrl: "https://drive.google.com/file/d/1Avv6H42ELM0_EQWVTrRqL1Qzd0Zc2QsX/view?usp=sharing",
+      drivePreviewUrl: "https://drive.google.com/file/d/1Avv6H42ELM0_EQWVTrRqL1Qzd0Zc2QsX/preview",
       certificateUrl: "certificates/credit-planner.png",
       certificateTitle: "Credit Planner – Certificate of Excellence (Rank 7)",
       achievement: "Secured 7th rank out of 119 participants in the 2nd round of Product Improvement Sprint of a Real Fintech Product – Credit Planner.",
@@ -301,32 +335,34 @@ export const portfolioData: PortfolioData = {
       }
     },
     {
-      id: "shasang-ai",
-      number: "04",
-      shortName: "SHASANG AI",
-      title: "ShaSang AI – Growth Strategy",
-      category: "Product Thinking · Growth Strategy · UX/UI Design",
-      oneLiner: "Product-led organic acquisition, SAI Coins tokenomics, and habit-forming retention loops.",
-      deckUrl: "decks/shasang-ai.pdf",
-      certificateUrl: "certificates/shasang-ai.png",
-      certificateTitle: "ShaSang A.I. – Certificate of Excellence (Rank 6)",
-      achievement: "Secured 6th rank out of 364 participants in the ShaSang A.I. National Growth Strategy Challenge.",
-      badgeText: "6th / 364",
-      tags: ["GROWTH STRATEGY", "USER PERSONA", "RETENTION", "GAMIFICATION", "PRODUCT THINKING"],
+      id: "dattansh",
+      number: "05",
+      shortName: "DATTANSH",
+      title: "Dattansh – Rice Economy Analytics",
+      category: "Excel · Data Analytics · Product Analytics",
+      oneLiner: "Deconstructing 50 years of agricultural yield, MSP policy shifts, and ~1,702L tonne forecasting.",
+      deckUrl: "https://drive.google.com/file/d/1YNMkULR2QRYo20cwG16v4W_b-GFFhVi4/view?usp=sharing",
+      drivePreviewUrl: "https://drive.google.com/file/d/1YNMkULR2QRYo20cwG16v4W_b-GFFhVi4/preview",
+      certificateUrl: "certificates/dattansh.png",
+      certificateTitle: "Dattansh: Data Analytics – Certificate of Participation (MANAGE Hyderabad)",
+      achievement: "50+ Years of India’s Rice Economy Data Analyzed Across MSP, Area, Yield, and Production.",
+      badgeText: "50+ Years Data",
+      tags: ["DATA ANALYSIS", "PRODUCT ANALYTICS", "FORECASTING", "CAGR", "SUPPLY RISK"],
       slides: [
-        { src: "decks/shasang-ai/slide-01.png", label: "Growth Strategy Cover" },
-        { src: "decks/shasang-ai/slide-02.png", label: "User Journey, Personas & UI Gaps" },
-        { src: "decks/shasang-ai/slide-03.png", label: "SAI Coins & User Acquisition" },
-        { src: "decks/shasang-ai/slide-04.png", label: "Retention Rate & Daily Missions" },
-        { src: "decks/shasang-ai/slide-05.png", label: "Strategic Summary & Thank You" }
+        { src: "decks/dattansh/slide-01.png", label: "Dattansh: Data Analytics Cover" },
+        { src: "decks/dattansh/slide-02.png", label: "Problem Statement & 50-Year Dataset" },
+        { src: "decks/dattansh/slide-03.png", label: "Supply Growth Drivers & Key Findings" },
+        { src: "decks/dattansh/slide-04.png", label: "Supply Risks & 10-Year CAGR Matrix" },
+        { src: "decks/dattansh/slide-05.png", label: "Final Conclusion & 2026-27 Forecast" },
+        { src: "decks/dattansh/slide-06.png", label: "Executive Summary & Thank You" }
       ],
       accentColor: {
-        name: "emerald",
-        text: "text-emerald-800",
-        bg: "bg-emerald-50",
-        border: "border-emerald-200",
-        glow: "rgba(6, 95, 70, 0.15)",
-        grad: "linear-gradient(135deg,#047857 0%,#0F766E 60%,#134E4A 100%)"
+        name: "indigo",
+        text: "text-indigo-800",
+        bg: "bg-indigo-50",
+        border: "border-indigo-200",
+        glow: "rgba(55, 48, 163, 0.15)",
+        grad: "linear-gradient(135deg,#4338CA 0%,#0E7490 65%,#1E1B4B 100%)"
       }
     }
   ],

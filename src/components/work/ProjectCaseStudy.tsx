@@ -78,7 +78,7 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#A97F50] text-white hover:bg-[#8A6035] text-xs font-mono font-semibold transition-all shadow-sm cursor-pointer hover:scale-105 active:scale-95"
-                title="Open PDF deck in a new tab"
+                title="Open presentation deck in Google Drive"
               >
                 <Layers size={14} />
                 <span>View Deck</span>
@@ -110,9 +110,10 @@ export const ProjectCaseStudy: React.FC<ProjectCaseStudyProps> = ({ project }) =
         {/* Right Column: 16:9 Interactive Deck Viewer */}
         <div className="lg:col-span-7 w-full space-y-3">
           <Deck
-            slides={project.slides}
+            slides={project.slides || []}
             name={project.title}
             deckUrl={project.deckUrl}
+            drivePreviewUrl={project.drivePreviewUrl}
             isOpen={isDeckOpen}
             onOpenChange={setIsDeckOpen}
             theme={{

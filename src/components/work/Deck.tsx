@@ -4,12 +4,13 @@ import { ChevronLeft, ChevronRight, Maximize2, X, ExternalLink } from "lucide-re
 import { SlideItem } from "../../data/portfolioData";
 
 interface DeckProps {
-  slides: SlideItem[];
+  slides?: SlideItem[];
   name: string;
   deckUrl?: string;
+  drivePreviewUrl?: string;
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
-  theme: {
+  theme?: {
     grad: string;
     glow: string;
     text: string;
@@ -17,10 +18,21 @@ interface DeckProps {
   };
 }
 
+const getDrivePreviewUrl = (drivePreviewUrl?: string, deckUrl?: string): string => {
+  if (drivePreviewUrl) return drivePreviewUrl;
+  if (!deckUrl) return "";
+  const match = deckUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (match) {
+    return `https://drive.google.com/file/d/${match[1]}/preview`;
+  }
+  return deckUrl.startsWith("http") ? deckUrl : "";
+};
+
 export const Deck: React.FC<DeckProps> = ({
-  slides,
+  slides = [],
   name,
   deckUrl,
+  drivePreviewUrl,
   isOpen: externalIsOpen,
   onOpenChange,
   theme: _theme,
@@ -28,6 +40,9 @@ export const Deck: React.FC<DeckProps> = ({
   const [idx, setIdx] = useState<number>(0);
   const [internalOpen, setInternalOpen] = useState<boolean>(false);
   const touchStartX = useRef<number | null>(null);
+
+  const previewUrl = getDrivePreviewUrl(drivePreviewUrl, deckUrl);
+  const hasPreview = Boolean(previewUrl);
 
   const open = externalIsOpen !== undefined ? externalIsOpen : internalOpen;
   const setOpen = useCallback(
@@ -68,9 +83,9 @@ export const Deck: React.FC<DeckProps> = ({
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpen(false);
-      } else if (e.key === "ArrowLeft") {
+      } else if (!hasPreview && e.key === "ArrowLeft") {
         goPrev();
-      } else if (e.key === "ArrowRight") {
+      } else if (!hasPreview && e.key === "ArrowRight") {
         goNext();
       }
     };
@@ -80,9 +95,9 @@ export const Deck: React.FC<DeckProps> = ({
       window.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = prevOverflow;
     };
-  }, [open, goPrev, goNext]);
+  }, [open, hasPreview, goPrev, goNext, setOpen]);
 
-  // Touch swipe handling
+  // Touch swipe handling for fallback carousel
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -114,69 +129,54 @@ export const Deck: React.FC<DeckProps> = ({
       <div
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === "ArrowLeft") goPrev();
-          if (e.key === "ArrowRight") goNext();
+          if (!hasPreview) {
+            if (e.key === "ArrowLeft") goPrev();
+            if (e.key === "ArrowRight") goNext();
+          }
         }}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
+        onTouchStart={hasPreview ? undefined : handleTouchStart}
+        onTouchEnd={hasPreview ? undefined : handleTouchEnd}
         className="group relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-[#E6DFD3] bg-[#FFFFFF] shadow-md transition-all duration-300 focus:outline-none"
         style={{
           boxShadow: "0 10px 30px rgba(43, 33, 24, 0.08)",
         }}
-        aria-label="Presentation deck viewer. Swipe or use arrow keys to flip slides."
+        aria-label={`${name} presentation deck viewer.`}
       >
-        {/* Slide Carousel Track */}
-        <div
-          onClick={() => setOpen(true)}
-          className="flex h-full w-full cursor-pointer"
-          title="Click to expand deck in full screen"
-          style={{
-            transform: `translateX(-${idx * 100}%)`,
-            transition: "transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)",
-          }}
-        >
-          {slides.map((s, i) => (
-            <div
-              key={i}
-              className="flex-[0_0_100%] relative h-full w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden"
-            >
-              <img
-                src={resolveSrc(s.src)}
-                alt={s.label || `Slide ${i + 1}`}
-                draggable={false}
-                className="w-full h-full object-contain select-none block"
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Left Arrow Button */}
-        <button
-          type="button"
-          aria-label="Previous slide"
-          onClick={(e) => {
-            e.stopPropagation();
-            goPrev();
-          }}
-          disabled={idx === 0}
-          className="absolute top-1/2 left-3 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E6DFD3] bg-[#FFFFFF]/90 text-[#2B2118] flex items-center justify-center transition-all hover:scale-105 hover:border-[#A97F50] hover:bg-[#FFFFFF] disabled:opacity-20 disabled:hover:scale-100 disabled:cursor-default z-10 backdrop-blur-sm shadow-sm"
-        >
-          <ChevronLeft size={20} />
-        </button>
-
-        {/* Right Arrow Button */}
-        <button
-          type="button"
-          aria-label="Next slide"
-          onClick={(e) => {
-            e.stopPropagation();
-            goNext();
-          }}
-          disabled={idx === total - 1}
-          className="absolute top-1/2 right-3 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E6DFD3] bg-[#FFFFFF]/90 text-[#2B2118] flex items-center justify-center transition-all hover:scale-105 hover:border-[#A97F50] hover:bg-[#FFFFFF] disabled:opacity-20 disabled:hover:scale-100 disabled:cursor-default z-10 backdrop-blur-sm shadow-sm"
-        >
-          <ChevronRight size={20} />
-        </button>
+        {hasPreview ? (
+          /* Embedded Google Drive Preview */
+          <iframe
+            src={previewUrl}
+            title={`${name} presentation deck`}
+            className="w-full h-full border-0 block"
+            allow="autoplay; fullscreen"
+            loading="lazy"
+          />
+        ) : (
+          /* Slide Carousel Track Fallback */
+          <div
+            onClick={() => setOpen(true)}
+            className="flex h-full w-full cursor-pointer"
+            title="Click to expand deck in full screen"
+            style={{
+              transform: `translateX(-${idx * 100}%)`,
+              transition: "transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)",
+            }}
+          >
+            {slides.map((s, i) => (
+              <div
+                key={i}
+                className="flex-[0_0_100%] relative h-full w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden"
+              >
+                <img
+                  src={resolveSrc(s.src)}
+                  alt={s.label || `Slide ${i + 1}`}
+                  draggable={false}
+                  className="w-full h-full object-contain select-none block"
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Expand / Fullscreen Button */}
         <button
@@ -192,35 +192,65 @@ export const Deck: React.FC<DeckProps> = ({
           <Maximize2 size={15} />
         </button>
 
-        {/* Current Slide Label Tag */}
-        <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-[#FFFFFF]/90 backdrop-blur-md text-[11px] font-mono text-[#2B2118] border border-[#E6DFD3] shadow-xs z-10 pointer-events-none">
-          <span>{slides[idx]?.label || `Slide ${idx + 1}`}</span>
-        </div>
+        {/* Carousel-only overlay controls (when not embedding Google Drive) */}
+        {!hasPreview && total > 0 && (
+          <>
+            {/* Left Arrow Button */}
+            <button
+              type="button"
+              aria-label="Previous slide"
+              onClick={(e) => {
+                e.stopPropagation();
+                goPrev();
+              }}
+              disabled={idx === 0}
+              className="absolute top-1/2 left-3 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E6DFD3] bg-[#FFFFFF]/90 text-[#2B2118] flex items-center justify-center transition-all hover:scale-105 hover:border-[#A97F50] hover:bg-[#FFFFFF] disabled:opacity-20 disabled:hover:scale-100 disabled:cursor-default z-10 backdrop-blur-sm shadow-sm"
+            >
+              <ChevronLeft size={20} />
+            </button>
 
-        {/* Counter Pill */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#FFFFFF]/95 border border-[#E6DFD3] text-xs font-mono font-bold tracking-widest text-[#2B2118] z-10 backdrop-blur-md shadow-sm pointer-events-none">
-          <span className="text-[#8A6035]">{String(idx + 1).padStart(2, "0")}</span>
-          <span className="text-[#8C7B6A] mx-1">/</span>
-          <span className="text-[#6B5B4B]">{String(total).padStart(2, "0")}</span>
-        </div>
+            {/* Right Arrow Button */}
+            <button
+              type="button"
+              aria-label="Next slide"
+              onClick={(e) => {
+                e.stopPropagation();
+                goNext();
+              }}
+              disabled={idx === total - 1}
+              className="absolute top-1/2 right-3 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#E6DFD3] bg-[#FFFFFF]/90 text-[#2B2118] flex items-center justify-center transition-all hover:scale-105 hover:border-[#A97F50] hover:bg-[#FFFFFF] disabled:opacity-20 disabled:hover:scale-100 disabled:cursor-default z-10 backdrop-blur-sm shadow-sm"
+            >
+              <ChevronRight size={20} />
+            </button>
+
+            {/* Counter Pill */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#FFFFFF]/95 border border-[#E6DFD3] text-xs font-mono font-bold tracking-widest text-[#2B2118] z-10 backdrop-blur-md shadow-sm pointer-events-none">
+              <span className="text-[#8A6035]">{String(idx + 1).padStart(2, "0")}</span>
+              <span className="text-[#8C7B6A] mx-1">/</span>
+              <span className="text-[#6B5B4B]">{String(total).padStart(2, "0")}</span>
+            </div>
+          </>
+        )}
       </div>
 
-      {/* Progress Dots */}
-      <div className="flex items-center justify-center gap-1.5 flex-wrap pt-1">
-        {slides.map((_, i) => (
-          <button
-            type="button"
-            key={i}
-            aria-label={`Jump to slide ${i + 1}`}
-            onClick={() => goTo(i)}
-            className={`h-2 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
-              i === idx
-                ? "w-7 bg-[#A97F50]"
-                : "w-2 bg-[#D8CEBF] hover:bg-[#A97F50]/60"
-            }`}
-          />
-        ))}
-      </div>
+      {/* Progress Dots (Carousel-only fallback) */}
+      {!hasPreview && total > 0 && (
+        <div className="flex items-center justify-center gap-1.5 flex-wrap pt-1">
+          {slides.map((_, i) => (
+            <button
+              type="button"
+              key={i}
+              aria-label={`Jump to slide ${i + 1}`}
+              onClick={() => goTo(i)}
+              className={`h-2 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+                i === idx
+                  ? "w-7 bg-[#A97F50]"
+                  : "w-2 bg-[#D8CEBF] hover:bg-[#A97F50]/60"
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Fullscreen Modal / Lightbox rendered in document.body via Portal */}
       {open &&
@@ -248,24 +278,26 @@ export const Deck: React.FC<DeckProps> = ({
               </div>
 
               <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
-                {/* Slide Counter */}
-                <div className="px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#E6DFD3] font-mono text-xs sm:text-sm tracking-wider font-semibold text-[#2B2118] shadow-xs">
-                  <span className="text-[#8A6035]">{String(idx + 1).padStart(2, "0")}</span>
-                  <span className="text-[#8C7B6A] mx-1">/</span>
-                  <span className="text-[#6B5B4B]">{String(total).padStart(2, "0")}</span>
-                </div>
+                {/* Slide Counter (Carousel only) */}
+                {!hasPreview && total > 0 && (
+                  <div className="px-3 py-1 rounded-full bg-[#FFFFFF] border border-[#E6DFD3] font-mono text-xs sm:text-sm tracking-wider font-semibold text-[#2B2118] shadow-xs">
+                    <span className="text-[#8A6035]">{String(idx + 1).padStart(2, "0")}</span>
+                    <span className="text-[#8C7B6A] mx-1">/</span>
+                    <span className="text-[#6B5B4B]">{String(total).padStart(2, "0")}</span>
+                  </div>
+                )}
 
-                {/* Open PDF in New Tab */}
+                {/* Open Deck in Google Drive or New Tab */}
                 {deckUrl && (
                   <a
                     href={resolveSrc(deckUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] text-xs font-mono font-medium text-[#6B5B4B] hover:text-[#2B2118] transition-all shadow-xs"
-                    title="Open PDF deck in new tab"
+                    title="Open presentation deck in new tab"
                   >
                     <ExternalLink size={13} className="text-[#8A6035]" />
-                    <span className="hidden sm:inline">Open PDF</span>
+                    <span className="hidden sm:inline">Open Deck</span>
                   </a>
                 )}
 
@@ -287,88 +319,98 @@ export const Deck: React.FC<DeckProps> = ({
               onClick={(e) => e.stopPropagation()}
               className="flex-1 flex items-center justify-center gap-3 sm:gap-6 min-h-0 py-3 sm:py-4 w-full max-w-7xl mx-auto relative"
             >
-              {/* Prev Button */}
-              <button
-                type="button"
-                aria-label="Previous slide"
-                onClick={goPrev}
-                disabled={idx === 0}
-                className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] hover:border-[#A97F50] disabled:opacity-20 text-[#2B2118] flex items-center justify-center transition-all flex-shrink-0 cursor-pointer disabled:cursor-default shadow-md z-10"
-              >
-                <ChevronLeft size={24} />
-              </button>
+              {/* Prev Button (Carousel only) */}
+              {!hasPreview && total > 0 && (
+                <button
+                  type="button"
+                  aria-label="Previous slide"
+                  onClick={goPrev}
+                  disabled={idx === 0}
+                  className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] hover:border-[#A97F50] disabled:opacity-20 text-[#2B2118] flex items-center justify-center transition-all flex-shrink-0 cursor-pointer disabled:cursor-default shadow-md z-10"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+              )}
 
               {/* Main Slide 16:9 Viewport */}
               <div
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
+                onTouchStart={hasPreview ? undefined : handleTouchStart}
+                onTouchEnd={hasPreview ? undefined : handleTouchEnd}
                 className="flex-1 max-w-6xl aspect-[16/9] max-h-[72vh] sm:max-h-[78vh] relative overflow-hidden rounded-2xl border border-[#E6DFD3] shadow-xl bg-[#FFFFFF]"
                 style={{
                   boxShadow: "0 20px 50px rgba(43, 33, 24, 0.1)",
                 }}
               >
-                <div
-                  className="flex h-full w-full"
-                  style={{
-                    transform: `translateX(-${idx * 100}%)`,
-                    transition: "transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)",
-                  }}
+                {hasPreview ? (
+                  <iframe
+                    src={previewUrl}
+                    title={`${name} fullscreen presentation deck`}
+                    className="w-full h-full border-0 block"
+                    allow="autoplay; fullscreen"
+                  />
+                ) : (
+                  <div
+                    className="flex h-full w-full"
+                    style={{
+                      transform: `translateX(-${idx * 100}%)`,
+                      transition: "transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)",
+                    }}
+                  >
+                    {slides.map((s, i) => (
+                      <div
+                        key={i}
+                        className="flex-[0_0_100%] relative h-full w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden"
+                      >
+                        <img
+                          src={resolveSrc(s.src)}
+                          alt={s.label || `Slide ${i + 1}`}
+                          draggable={false}
+                          className="w-full h-full object-contain select-none block"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Next Button (Carousel only) */}
+              {!hasPreview && total > 0 && (
+                <button
+                  type="button"
+                  aria-label="Next slide"
+                  onClick={goNext}
+                  disabled={idx === total - 1}
+                  className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] hover:border-[#A97F50] disabled:opacity-20 text-[#2B2118] flex items-center justify-center transition-all flex-shrink-0 cursor-pointer disabled:cursor-default shadow-md z-10"
                 >
+                  <ChevronRight size={24} />
+                </button>
+              )}
+            </div>
+
+            {/* Modal Bottom Bar with Jump-To Dots (Carousel only) */}
+            {!hasPreview && total > 0 && (
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="pt-2 pb-1 flex flex-col items-center justify-center gap-2 flex-shrink-0"
+              >
+                <div className="flex items-center justify-center gap-2 flex-wrap">
                   {slides.map((s, i) => (
-                    <div
+                    <button
+                      type="button"
                       key={i}
-                      className="flex-[0_0_100%] relative h-full w-full bg-[#FFFFFF] flex items-center justify-center overflow-hidden"
-                    >
-                      <img
-                        src={resolveSrc(s.src)}
-                        alt={s.label || `Slide ${i + 1}`}
-                        draggable={false}
-                        className="w-full h-full object-contain select-none block"
-                      />
-                    </div>
+                      aria-label={`Jump to slide ${i + 1}: ${s.label || ""}`}
+                      onClick={() => goTo(i)}
+                      className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+                        i === idx
+                          ? "w-8 bg-[#A97F50]"
+                          : "w-2.5 bg-[#D8CEBF] hover:bg-[#A97F50]/60"
+                      }`}
+                      title={s.label || `Slide ${i + 1}`}
+                    />
                   ))}
                 </div>
-
-                {/* Current Slide Label in Modal */}
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-lg bg-[#FFFFFF]/90 backdrop-blur-md text-xs font-mono text-[#2B2118] border border-[#E6DFD3] shadow-xs pointer-events-none">
-                  <span>{slides[idx]?.label || `Slide ${idx + 1}`}</span>
-                </div>
               </div>
-
-              {/* Next Button */}
-              <button
-                type="button"
-                aria-label="Next slide"
-                onClick={goNext}
-                disabled={idx === total - 1}
-                className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-[#E6DFD3] bg-[#FFFFFF] hover:bg-[#F0E4D4] hover:border-[#A97F50] disabled:opacity-20 text-[#2B2118] flex items-center justify-center transition-all flex-shrink-0 cursor-pointer disabled:cursor-default shadow-md z-10"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-
-            {/* Modal Bottom Bar with Jump-To Dots */}
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="pt-2 pb-1 flex flex-col items-center justify-center gap-2 flex-shrink-0"
-            >
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                {slides.map((s, i) => (
-                  <button
-                    type="button"
-                    key={i}
-                    aria-label={`Jump to slide ${i + 1}: ${s.label || ""}`}
-                    onClick={() => goTo(i)}
-                    className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
-                      i === idx
-                        ? "w-8 bg-[#A97F50]"
-                        : "w-2.5 bg-[#D8CEBF] hover:bg-[#A97F50]/60"
-                    }`}
-                    title={s.label || `Slide ${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
+            )}
           </div>,
           document.body
         )}
