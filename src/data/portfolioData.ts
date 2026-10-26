@@ -224,12 +224,11 @@ export const portfolioData: PortfolioData = {
       slides: [
         { src: "decks/jar/slide-01.png", label: "Cover & PM Case Competition" },
         { src: "decks/jar/slide-02.png", label: "Executive Summary & Redefined Problem" },
-        { src: "decks/jar/slide-03.png", label: "Research & MECE Issue Tree" },
-        { src: "decks/jar/slide-04.png", label: "Solution & User Journey" },
-        { src: "decks/jar/slide-05.png", label: "Tier-Wise Benefits & Privileges" },
-        { src: "decks/jar/slide-06.png", label: "Business Impact & Funnel Model" },
-        { src: "decks/jar/slide-07.png", label: "North Star Metric & Key Metrics (MWAS)" },
-        { src: "decks/jar/slide-08.png", label: "Team & Concluding Slide" }
+        { src: "decks/jar/slide-03.png", label: "Root Cause & User Journey" },
+        { src: "decks/jar/slide-04.png", label: "Solution and UI" },
+        { src: "decks/jar/slide-05.png", label: "Implementation & Tier-Wise Benefits" },
+        { src: "decks/jar/slide-06.png", label: "Business Impact & Solution Validation" },
+        { src: "decks/jar/slide-07.png", label: "Key Metrics & North Star Metric" }
       ],
       accentColor: {
         name: "violet",
